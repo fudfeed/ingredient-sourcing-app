@@ -32,7 +32,7 @@ Once the project moves into development, the press release can be used as a touc
   > Describe the problem your product solves.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem. wayne's world
+  > Describe how your product elegantly solves the problem.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
