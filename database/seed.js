@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {Recipe, Store} = require('./index.js');
+const { Recipe, Store } = require('./index.js');
 const faker = require('faker');
 const data = require('./buildData')
 
