@@ -2,14 +2,15 @@ import React from 'react';
 import {
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet
 } from 'react-native';
 
 
-const Header = () => {
+const Header = (props) => {
   return (
     <View style={styles.header}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={props.handleMenu}>
         <Image style={styles.menu} source={require('../icons/sidebar.png')}></Image>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -22,7 +23,7 @@ const Header = () => {
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   header: {
     height: 50,
     borderBottomColor: 'gray',
@@ -44,6 +45,6 @@ const styles = {
     height: 35,
     width: 35
   },
-}
+})
 
 export default Header;
