@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
-  SafeAreaView,
   View,
   Image,
   TouchableOpacity
@@ -9,17 +8,17 @@ import {
 
 const Header = () => {
   return (
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Image style={styles.menu} source={require('../icons/sidebar.png')}></Image>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image style={styles.logo} source={require('../icons/fudFeedLogo.png')}></Image>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image style={styles.camera} source={require('../icons/camera.jpg')}></Image>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.header}>
+      <TouchableOpacity>
+        <Image style={styles.menu} source={require('../icons/sidebar.png')}></Image>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image style={styles.logo} source={require('../icons/fudFeedLogo.png')}></Image>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image style={styles.camera} source={require('../icons/camera.jpg')}></Image>
+      </TouchableOpacity>
+    </View>
   );
 };
 

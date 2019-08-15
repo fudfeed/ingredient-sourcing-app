@@ -18,7 +18,7 @@ const Kristina = () => {
     <Fragment>
       <SafeAreaView>
         <Header />
-        <ScrollView>
+        <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
           <View style={styles.map}>
             <Text>This is Map</Text>
           </View>
