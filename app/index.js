@@ -24,27 +24,48 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Chris from './components/chris.js'
-import Jeremy from './components/jeremy.js';
-import Kristina from './components/kristina.js';
-import Wayne from './components/wayne.js';
+import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
-const App = () => {
-  return (
-    <Fragment>
-      <SafeAreaView>
-        <ScrollView>
-          <View>
-            <Chris />
-            <Jeremy />
-            <Kristina />
-            <Wayne />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
-};
+import Feed from './components/feed.js'
+import Input from './components/input.js';
+import Map from './components/map.js';
+import Search from './components/search.js';
+
+const DrawerNavigator = createDrawerNavigator(
+  {
+    'füdfeed': Feed,
+    'search füd': Search,
+    'input füd': Input,
+    'füd map': Map,
+  },
+  {
+    drawerType: 'front',
+    hideStatusBar: true,
+    drawerBackgroundColor: 'rgba(255,255,255,.9)',
+    overlayColor: '#6b52ae',
+    contentOptions: {
+      activeTintColor: '#fff',
+      activeBackgroundColor: '#6b52ae',
+    },
+  },
+);
+
+// const App = () => {
+//   return (
+//     <Fragment>
+//       <SafeAreaView>
+//         <ScrollView>
+//           <View>
+//             <Chris />
+//             <Jeremy />
+//             <Kristina />
+//             <Wayne />
+//           </View>
+//         </ScrollView>
+//       </SafeAreaView>
+//     </Fragment>
+//   );
+// };
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -85,4 +106,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+// export default App;
+export default createAppContainer(DrawerNavigator);
