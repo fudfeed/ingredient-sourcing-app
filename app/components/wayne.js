@@ -7,7 +7,8 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Button
 } from 'react-native';
 
 class SearchRecipe extends React.Component {
@@ -29,103 +30,34 @@ class SearchRecipe extends React.Component {
     return (
       <Fragment>
         <SafeAreaView>
-        <View style={styles.searchBox}>
-          <TextInput placeholder='Type anything!' style={styles.searchField}></TextInput>
-        </View>
-          <View style={styles.component}>
-            <View style={styles.margin}>
-              <TouchableOpacity style={styles.whereuat}>
-                <Text style={styles.leftButton}>Search By Recipe</Text>
-              </TouchableOpacity>
+        <View style={styles.component}>
+            <View style={styles.searchBox}>
+              <TextInput placeholder='what are you feeling today?' style={styles.searchField}></TextInput>
+            </View>
+          <View style={styles.buttonContainer}>
+            <View>
+              <Button title="search by recipe">
+              </Button>
             </View>
             <View>
-              <TouchableOpacity style={styles.whereuat2}>
-                <Text style={styles.rightButton}>Search By Stores</Text>
-              </TouchableOpacity>
+              <Button title="search by store">
+              </Button>
             </View>
           </View>
+        </View>
         </SafeAreaView>
       </Fragment>
     );
   }
 }
 
-// const SearchRecipe = () => {
-//   return (
-//     <Fragment>
-//       {/* <SafeAreaView>
-//         <ScrollView>
-//           <View> */}
-//       <SafeAreaView>
-//       <View style={styles.searchInput}>
-//         <TextInput style={styles.disappearingText}>What are you searching for today?</TextInput>
-//       </View>
-//         <View style={styles.component}>
-//           <View style={styles.margin}>
-//             <TouchableOpacity style={styles.whereuat}>
-//               <Text style={styles.leftButton}>Search By Recipe</Text>
-//             </TouchableOpacity>
-//           </View>
-//           <View>
-//             <TouchableOpacity style={styles.whereuat2}>
-//               <Text style={styles.rightButton}>Search By Stores</Text>
-//             </TouchableOpacity>
-//           </View>
-//         </View>
-//       </SafeAreaView>
-//       {/* </View>
-//         </ScrollView>
-//       </SafeAreaView> */}
-//     </Fragment>
-//   );
-// };
-
-//812 is the true height of an iphone x
-
 const styles = StyleSheet.create({
-  component: {
-    height: 812,
-    width: 375,
-    // backgroundColor: '#f8ebcd',
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  leftButton: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 5,
-    paddingRight: 5,
-    height: 50,
-    alignItems: 'center',
-  },
-  rightButton: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 5,
-    paddingRight: 5,
-    height: 50,
-    alignItems: 'center'
-  },
-  whereuat: {
-    backgroundColor: '#f8ebcd'
-  },
-  whereuat2: {
-    backgroundColor: 'white'
-  },
-  margin: {
-    marginRight: 10,
-    alignItems: 'center',
-    textAlign: 'center'
-  },
+
   searchBox: {
     alignItems: 'center',
     width: 300,
     justifyContent: 'center',
-    marginLeft: 37,
-    backgroundColor: 'red'
+    marginLeft: 37
   },
   searchField: {
     borderWidth: 1,
@@ -135,6 +67,17 @@ const styles = StyleSheet.create({
     height: 50,
     fontSize: 20,
     textAlign: 'center'
+  },
+  buttonContainer: {
+    // backgroundColor: '#f8ebcd',
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  component: {
+    justifyContent: 'flex-start',
+    marginTop: 300
   }
 });
 
