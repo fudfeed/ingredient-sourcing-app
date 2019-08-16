@@ -56,10 +56,7 @@ class Feed extends React.Component {
       <Fragment>
         <SafeAreaView>
           <Header handleMenu={this.props.navigation.openDrawer} />
-          <ScrollView
-            stickyHeaderIndices={[1]}
-            showsVerticalScrollIndicator={false}
-          >
+          <ScrollView>
             {
               this.state.feedData.length > 0 ? this.renderImages() : null
             }
