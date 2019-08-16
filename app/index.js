@@ -33,13 +33,13 @@ import Search from './components/search.js';
 
 const DrawerNavigator = createDrawerNavigator(
   {
+    initialRouteName: Feed,
     'füdfeed': Feed,
     'search füd': Search,
     'input füd': Input,
     'füd map': fudMap,
   },
   {
-    initialRouteName: 'füdfeed',
     drawerType: 'front',
     hideStatusBar: true,
     drawerBackgroundColor: 'rgba(255,255,255,.9)',
