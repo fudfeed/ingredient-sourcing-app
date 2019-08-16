@@ -1995,6 +1995,7 @@ var arr = [{
   "title": "Pretzel-Walnut Crusted Halibut",
   "image": "https://spoonacular.com/recipeImages/568236-556x370.jpg",
   "cuisines": [],
+  "dishTypes": [],
   "instructions": "Preheat oven to 450 degrees.Add pretzels and walnuts to a food processor and blend until they are small crumbs. (If you don't have a food processor you can crush the mixture with a rolling pin in a ziplock bag.) Empty the crumbs into a small bowl and add the lemon pepper. In a sauce pan add 1 Tbsp of butter and melt it over medium heat.In another bowl add the other 1 Tbsp of butter and put in the microwave until melted about 15 seconds.Pat the halibut with a paper towel on both sides. Sprinkle both sides with salt. Brush both sides of the halibut with the melted butter. Pat down both sides of the halibut generously with the pretzel walnut mixture.Put it into the sauce pan and cook for about 45 seconds on each side just to get a good sear. Place in the oven for 8 minutes flipping half way through the cooking time.Serve over rice or greens.*Cooking time may vary ~ Cook in the oven for 10 minutes per 1/3 inch thickness*",
 }, {
   "ingredients": [{
@@ -3684,10 +3685,11 @@ var arr = [{
   "image": "https://spoonacular.com/recipeImages/200756-556x370.jpg",
   "cuisines": [],
   "dishTypes": ["side dish"],
-  "instructions": "Procedures                                                                              1                                                                            Preheat the oven to 350°F. Grease two 9x5x3-inch loaf pans and line with parchment paper.                                                                                                                            2                                                                            Combine the flour and salt in a bowl and set aside.                                                                                                                            3                                                                            With an electric mixer, cream the butter and sugar until pale and fluffy. Stir in the vanilla extract.                                                                                                                            4                                                                            In a large bowl, lightly beat the 8 eggs and add to the butter and sugar mix. Fold in the flour and mix thoroughly. Fold the semisweet chocolate chips into the finished batter. Divide the batter between the pans.                                                                                                                            5                                                                            Bake until a toothpick inserted into center of each cake comes out clean, about 65 minutes. Let cool in pans on a wire rack for 30 minutes before removing from the pans.                                                                                                                            6                                                                            To make glaze, heat the chocolate chips, coffee liquer, vanilla extract and light corn syrup in a glass bowl set in a simmering pan of water.  Whisk until smooth. Pour over cake and for a special treat serve with whipped cream.",
+  "instructions": "Procedures Preheat the oven to 350°F. Grease two 9x5x3-inch loaf pans and line with parchment paper. 2 Combine the flour and salt in a bowl and set aside. 3 With an electric mixer, cream the butter and sugar until pale and fluffy. Stir in the vanilla extract. 4 In a large bowl, lightly beat the 8 eggs and add to the butter and sugar mix. Fold in the flour and mix thoroughly. Fold the semisweet chocolate chips into the finished batter. Divide the batter between the pans. Bake until a toothpick inserted into center of each cake comes out clean, about 65 minutes. Let cool in pans on a wire rack for 30 minutes before removing from the pans. To make glaze, heat the chocolate chips, coffee liquer, vanilla extract and light corn syrup in a glass bowl set in a simmering pan of water.  Whisk until smooth. Pour over cake and for a special treat serve with whipped cream.",
 }]
 
 let output = [];
+
 for (let i = 0; i < arr.length; i++) {
   const { title, cuisines, dishTypes, instructions, ingredients, image } = arr[i]
   console.log(i)
@@ -3700,3 +3702,5 @@ for (let i = 0; i < arr.length; i++) {
   })
 }
 console.log(output)
+
+module.exports = output;
