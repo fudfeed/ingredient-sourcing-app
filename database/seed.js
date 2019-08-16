@@ -15,8 +15,6 @@ const recipeSeed = () => {
     const commentLen = Math.floor(Math.random() * 5)
     let comments = []
     for(let j = 0; j < commentLen; j++) {
-      const name = faker.internet.userName()
-      const avatar = faker.image.avatar()
       let comment = {
         body: faker.lorem.sentences(),
         chef: {
@@ -31,6 +29,7 @@ const recipeSeed = () => {
     output[i] = {
       id,
       chef,
+      name: recipe[i].title,
       ingredients: recipe[i].ingredients,
       instructions: recipe[i].instructions,
       comments,
