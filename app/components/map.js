@@ -11,12 +11,10 @@ import {
 } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-// import { Map, GoogleApiWrapper } from 'google-maps-react';
 import Header from './header.js';
-// import token from './token.js';
 import Store from './store.js';
 
-class Map extends React.Component {
+class fudMap extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -118,4 +116,4 @@ const styles = {
   // }
 };
 
-export default Map;
+export default fudMap;
