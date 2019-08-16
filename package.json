@@ -7,7 +7,8 @@
     "test": "jest",
     "lint": "eslint .",
     "ios": "react-native run-ios",
-    "mongo-server": "nodemon server/index.js"
+    "mongo-server": "nodemon server/index.js",
+    "seed": "node database/seed.js"
   },
   "dependencies": {
     "express": "^4.17.1",
