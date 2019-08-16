@@ -44,8 +44,9 @@ class Input extends React.Component {
   render() {
     return (
       <SafeAreaView>
+        <Header handleMenu={this.props.navigation.openDrawer} />
         <View>
-          <Text>This is some shit</Text>
+          {/* <Text>This is some shit</Text> */}
         </View>
         <View>
           <Button onPress={this.handleButtonPress} title='photos'></Button>
