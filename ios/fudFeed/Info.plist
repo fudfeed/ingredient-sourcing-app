@@ -72,5 +72,13 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow us to use your camera to add a photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow us to use your photo library to add a photo</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allow us to use your photo library to add a photo</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your message to user when the microphone is accessed for the first time</string>
 </dict>
 </plist>
