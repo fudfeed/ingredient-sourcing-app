@@ -39,6 +39,7 @@ const DrawerNavigator = createDrawerNavigator(
     'füd map': fudMap,
   },
   {
+    initialRouteName: 'füdfeed',
     drawerType: 'front',
     hideStatusBar: true,
     drawerBackgroundColor: 'rgba(255,255,255,.9)',
