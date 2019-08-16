@@ -1,31 +1,48 @@
 const mongoose = require('mongoose');
 const { Recipe, Store } = require('./index.js');
 const faker = require('faker');
-const data = require('./buildData')
+const recipe = require('./recipeData.js')
+const storeSeed = require('./storeData.js')
 
 const recipeSeed = () => {
   let output = [], i;
   for (i = 0; i < 100; i++) {
     const id = i + 1;
-    const chef = faker.internet.userName()
-    const len = Math.ceil(Math.random()*18)
+    const chef = { 
+      name: faker.internet.userName(),
+      avatar: faker.image.avatar()
+    }
+    const commentLen = Math.floor(Math.random() * 5)
+    let comments = []
+    for(let j = 0; j < commentLen; j++) {
+      const name = faker.internet.userName()
+      const avatar = faker.image.avatar()
+      let comment = {
+        body: faker.lorem.sentences(),
+        chef: {
+          name: faker.internet.userName(),
+          avatar: faker.image.avatar()
+        },
+        rating: Math.ceil(Math.random() * 5),
+        date: new Date(Math.floor(Math.random() * 26791440) + 1539129600)
+      }
+      comments.push(comment)
+    }
+    output[i] = {
+      id,
+      chef,
+      ingredients: recipe[i].ingredients,
+      instructions: recipe[i].instructions,
+      comments,
+      hashtags: recipe[i].hashtags,
+      photo: recipe[i].image
+    }
   }
-  output = {
-    id,
-    chef,
-
-  }
-  return output;
+  return output
 }
 
-const storeSeed = () => {
-  let output = [];
-
-  return output;
-}
-
-const seedRecipes  = () => {
-  Recipe.create(recipeSeed)
+const seedRecipes = () => {
+  Recipe.create(recipeSeed())
     .then(() => {
       console.log('Database seeded!');
       mongoose.connection.close();
@@ -33,7 +50,7 @@ const seedRecipes  = () => {
     .catch(err => console.error(err));
 }
 
-seedRecipes ();
+seedRecipes();
 
 const seedStores = () => {
   Store.create(storeSeed)

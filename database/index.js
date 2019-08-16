@@ -1,12 +1,15 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fudFeed')
+mongoose.connect('mongodb://localhost/fudFeed', { useNewUrlParser: true })
   .then(() => console.log('mongoose connected successfully'))
   .catch(() => console.log('mongoose connection error'));
 
 const recipeSchema = mongoose.Schema(
   {
     id: { type: Number, required: true }, //unique: true for index
-    chef: { type: String, required: true },
+    chef: {
+      name: { type: String, required: true },
+      avatar: { type: String, required: true }
+    },
     ingredients: [{
       name: { type: String, required: true },
       quantity: { type: String, required: true },
@@ -14,8 +17,11 @@ const recipeSchema = mongoose.Schema(
     }],
     instructions: { type: String, required: true },
     comments: [{
-      body: { type: String, required: true },
-      chef: { type: String, required: true },
+      body: { type: String },
+      chef: { 
+        name: { type: String, required: true },
+        avatar: { type: String, required: true }
+      },
       rating: { type: Number, required: true },
       date: { type: String, required: true },
     }],
@@ -32,7 +38,8 @@ const storeSchema = mongoose.Schema(
   {
     id: { type: Number, required: true }, //unique: true for index
     name: { type: String, required: true },
-    location: { type: String, required: true },
+    latitude: { type: Number, required: true },
+    longitude: { type: Number, required: true },
     score: { type: Number, required: true },
     ingredients: [{
       name: { type: String, required: true },
