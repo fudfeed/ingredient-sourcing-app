@@ -28,7 +28,7 @@ import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 import Feed from './components/feed.js'
 import Input from './components/input.js';
-import Map from './components/map.js';
+import fudMap from './components/map.js';
 import Search from './components/search.js';
 
 const DrawerNavigator = createDrawerNavigator(
@@ -36,7 +36,7 @@ const DrawerNavigator = createDrawerNavigator(
     'füdfeed': Feed,
     'search füd': Search,
     'input füd': Input,
-    'füd map': Map,
+    'füd map': fudMap,
   },
   {
     drawerType: 'front',

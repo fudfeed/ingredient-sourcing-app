@@ -60,3 +60,6 @@ buck-out/
 
 # eslintignore
 .eslintignore
+
+# Google API Token
+/app/components/token.js
