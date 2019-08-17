@@ -1511,7 +1511,7 @@ const storeSeedGen = () => {
     for (j = 0; j < ingrLen; j++) {
       const ingrName = ingredients[Math.floor(getRand(0, 1348))]
       const price = +(getRand(0.99, 50).toFixed(2))
-      arr.push({ name: ingrName, price })
+      arr.push({ name: ingrName.toLowerCase(), price })
     }
     const store = {
       id,
