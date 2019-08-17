@@ -1,5 +1,5 @@
 import React, { Fragment, PureComponent } from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableHighlight, AppRegistry, Button, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableHighlight, AppRegistry, Button, TouchableOpacity, Image} from 'react-native';
 import Header from './header.js';
 import { RNCamera } from 'react-native-camera';
 
@@ -9,28 +9,37 @@ import { RNCamera } from 'react-native-camera';
 
 
 class Input extends React.Component {
-  construtor(props) {
-    state = {
-      photo: ''
-    }
+  // construtor(props) {
+  //   state = {
+  //     photo: '',
+  //     view: 'camera'
+  //   }
+  //   // this.renderCameraView = this.renderCameraView.bind(this)
+  // }
+
+  state = {
+      photo: '',
+      view: 'camera'
   }
+
   takePicture = async () => {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync(options);
       this.setState({
-        photo: data.uri
-      }, () => console.warn(this.state.photo))
+        photo: data.uri,
+        view: 'form'
+      })
     }
   };
 
-  render() {
+  renderCameraView = () => {
     return (
       <Fragment>
         <SafeAreaView>
-        <Header handleMenu={this.props.navigation.openDrawer} />
-        <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
-        </ScrollView>
+          <Header handleMenu={this.props.navigation.openDrawer} />
+          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false} >
+          </ScrollView>
         </SafeAreaView>
         <View style={styles.container}>
           <RNCamera
@@ -56,17 +65,42 @@ class Input extends React.Component {
               console.log(barcodes);
             }}
           />
-          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-            <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-              <Text style={{ fontSize: 14 }}> CLICK </Text>
+          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }} >
+            <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture} >
+              <Text style={{ fontSize: 14 }} > CLICK </Text>
             </TouchableOpacity>
           </View>
         </View>
-
-
       </Fragment>
-    );
+    )
   }
+  renderFormView = () => {
+    return (
+      <Fragment>
+        <SafeAreaView>
+          <Header handleMenu={this.props.navigation.openDrawer} />
+          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
+          </ScrollView>
+          <View >
+            <Image
+              style={styles.photo}
+              source={{uri: this.state.photo}}
+              />
+            <Text>Form Goes Here</Text>
+          </View>
+        </SafeAreaView>
+      </Fragment>
+    )
+  }
+  render() {
+      return (
+        <Fragment>
+          {(this.state.view === 'camera') ? this.renderCameraView()
+            : (this.state.view === 'form') ? this.renderFormView()
+            : <Text>{this.state.photo}</Text>}
+        </Fragment>
+      );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -89,6 +123,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 20,
   },
+  photo: {
+    alignSelf: 'center',
+    height: 320,
+    width: 320,
+    margin: 10
+  }
 });
 
 export default Input;
