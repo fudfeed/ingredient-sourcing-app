@@ -13,10 +13,15 @@ import {
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Header from './header.js';
 import Store from './store.js';
+import axios from 'axios';
 
 class fudMap extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      stores: [],
+      query: 'rice'
+    }
   }
 
   // getInitialState() {
@@ -43,30 +48,84 @@ class fudMap extends React.Component {
   //   );
   // }
 
+  getStores = () => {
+    axios
+      .get('http://localhost:3000/stores/rice')
+      .then(({ data }) => {
+        this.setState({
+          stores: data
+        })
+      })
+      .catch(() => console.error('Sorry, we could not get stores'));
+  }
+
+  displayMarkers = () => {
+    if (this.state.stores.length > 0) {
+      {
+        this.state.stores.map((store) => {
+          return (
+            <MapView.Marker
+              coordinate={{
+                latitude: store.latitude,
+                longitude: store.longitude
+              }}
+              title={store.name}
+              description={`score: ${store.score}`}
+            />
+          )
+        })
+      }
+    } else {
+      return (
+        <MapView.Marker
+          coordinate={{
+            latitude: 34.0522,
+            longitude: -118.2437
+          }}
+          title='Default'
+          description='This is default marker'
+        />
+      )
+    }
+  }
+
+  displayStores = () => {
+    if (this.state.stores.length > 0) {
+      return <Store stores={this.state.stores} query={this.state.query}/>
+    } else {
+      return <View></View>
+    }
+  }
+
+  componentDidMount() {
+    this.getStores();
+  }
+
   render() {
     return (
       <Fragment>
         <SafeAreaView>
           <Header handleMenu={this.props.navigation.openDrawer} />
-          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
+          <ScrollView>
             <View style={styles.container}>
-              <Text>
-                hello
-                </Text>
               <MapView
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
-                initialRegion={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
+                region={{
+                  latitude: 33.9984305,
+                  longitude: -118.379041,
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421
                 }}
-              />
+              >
+                <View>
+                  {this.displayMarkers()}
+                </View>
+              </MapView>
             </View>
             <View style={styles.resultContainer}>
-              <Text style={styles.result}>This is Results</Text>
-              <Store />
+              <Text style={styles.result}>Search Results for {this.state.query}</Text>
+              <View>{this.displayStores()}</View>
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -83,7 +142,6 @@ const styles = {
     margin: 10
   },
   container: {
-    flex: 1,
     ...StyleSheet.absoluteFillObject,
     height: 300,
     width: 400,
@@ -94,9 +152,8 @@ const styles = {
     ...StyleSheet.absoluteFillObject
   },
   resultContainer: {
-    flex: 2,
     // backgroundColor: 'green',
-    height: 400,
+    // height: 400,
     padding: 10,
     margin: 10,
     marginTop: 320
