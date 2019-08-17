@@ -42,11 +42,11 @@ const DrawerNavigator = createDrawerNavigator(
   {
     drawerType: 'front',
     hideStatusBar: true,
-    drawerBackgroundColor: 'rgba(255,255,255,.9)',
-    overlayColor: '#6b52ae',
+    drawerBackgroundColor: 'cornsilk', //'rgba(253, 248, 220, 0.9)', //#fdf8dc
+    overlayColor: '#888888',
     contentOptions: {
       activeTintColor: '#fff',
-      activeBackgroundColor: '#6b52ae',
+      activeBackgroundColor: '#FFC966',
     },
   },
 );

@@ -13,14 +13,15 @@ import {
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Header from './header.js';
 import Store from './store.js';
-import axios from 'axios';
+import sampleData from './sampleData.js';
+// import axios from 'axios';
 
 class fudMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stores: [],
-      query: 'rice'
+      stores: sampleData,
+      query: 'spinach',
     }
   }
 
@@ -48,33 +49,31 @@ class fudMap extends React.Component {
   //   );
   // }
 
-  getStores = () => {
-    axios
-      .get('http://localhost:3000/stores/rice')
-      .then(({ data }) => {
-        this.setState({
-          stores: data
-        })
-      })
-      .catch(() => console.error('Sorry, we could not get stores'));
-  }
+  // getStores = () => {
+  //   axios
+  //     .get(`http://localhost:3000/stores/?ingredient=${this.state.query}`)
+  //     .then(({ data }) => {
+  //       this.setState({
+  //         stores: data
+  //       })
+  //     })
+  //     .catch(() => console.error('Sorry, we could not get stores'));
+  // }
 
   displayMarkers = () => {
     if (this.state.stores.length > 0) {
-      {
-        this.state.stores.map((store) => {
-          return (
-            <MapView.Marker
-              coordinate={{
-                latitude: store.latitude,
-                longitude: store.longitude
-              }}
-              title={store.name}
-              description={`score: ${store.score}`}
-            />
-          )
-        })
-      }
+      // this.state.stores.map((store) => {
+      //   return (
+      //     <MapView.Marker
+      //       coordinate={{
+      //         latitude: store.latitude,
+      //         longitude: store.longitude
+      //       }}
+      //       title={store.name}
+      //       description={`score: ${store.score}`}
+      //     />
+      //   )
+      // })
     } else {
       return (
         <MapView.Marker
@@ -91,14 +90,10 @@ class fudMap extends React.Component {
 
   displayStores = () => {
     if (this.state.stores.length > 0) {
-      return <Store stores={this.state.stores} query={this.state.query}/>
+      return <Store stores={this.state.stores} query={this.state.query} />
     } else {
       return <View></View>
     }
-  }
-
-  componentDidMount() {
-    this.getStores();
   }
 
   render() {
@@ -114,13 +109,23 @@ class fudMap extends React.Component {
                 region={{
                   latitude: 33.9984305,
                   longitude: -118.379041,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421
+                  latitudeDelta: 0.1922,
+                  longitudeDelta: 0.1421
                 }}
               >
-                <View>
-                  {this.displayMarkers()}
-                </View>
+                {this.state.stores.map((store, key) => {
+                  return (
+                    <MapView.Marker
+                      key={key}
+                      coordinate={{
+                        latitude: store.latitude,
+                        longitude: store.longitude
+                      }}
+                      title={store.name}
+                      description={`score: ${store.score}`}
+                    />
+                  )
+                })}
               </MapView>
             </View>
             <View style={styles.resultContainer}>
@@ -135,12 +140,6 @@ class fudMap extends React.Component {
 };
 
 const styles = {
-  map1: {
-    // backgroundColor: '#fdf8dc',
-    height: 250,
-    padding: 10,
-    margin: 10
-  },
   container: {
     ...StyleSheet.absoluteFillObject,
     height: 300,
@@ -152,25 +151,13 @@ const styles = {
     ...StyleSheet.absoluteFillObject
   },
   resultContainer: {
-    // backgroundColor: 'green',
-    // height: 400,
-    padding: 10,
     margin: 10,
+    paddingLeft: 10,
     marginTop: 320
   },
   result: {
     fontSize: 20
-  } //,
-  // store: {
-  //   padding: 10,
-  //   fontSize: 14
-  // },
-  // storeItem: {
-  //   fontSize: 10,
-  //   // padding: 5,
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-around'
-  // }
+  }
 };
 
 export default fudMap;
