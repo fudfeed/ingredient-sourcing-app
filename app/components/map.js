@@ -135,12 +135,6 @@ class fudMap extends React.Component {
 };
 
 const styles = {
-  map1: {
-    // backgroundColor: '#fdf8dc',
-    height: 250,
-    padding: 10,
-    margin: 10
-  },
   container: {
     ...StyleSheet.absoluteFillObject,
     height: 300,
@@ -152,25 +146,13 @@ const styles = {
     ...StyleSheet.absoluteFillObject
   },
   resultContainer: {
-    // backgroundColor: 'green',
-    // height: 400,
-    padding: 10,
     margin: 10,
+    paddingLeft: 10,
     marginTop: 320
   },
   result: {
     fontSize: 20
-  } //,
-  // store: {
-  //   padding: 10,
-  //   fontSize: 14
-  // },
-  // storeItem: {
-  //   fontSize: 10,
-  //   // padding: 5,
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-around'
-  // }
+  }
 };
 
 export default fudMap;
