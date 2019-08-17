@@ -4,7 +4,6 @@ import {
   View,
   Text
 } from 'react-native';
-import { genericTypeAnnotation } from '@babel/types';
 
 const Store = (props) => {
   return (
@@ -15,14 +14,12 @@ const Store = (props) => {
             <View key={key}>
               <Text style={styles.store}>{store.name}</Text>
               {store.ingredients.map((item, key) => {
-                if (item.name === props.query) {
                   return (
                     <View style={styles.storeItem} key={key}>
-                      <Text style={styles.item}>{item.name.trim()}</Text>
+                      <Text style={styles.item}>{item.name}</Text>
                       <Text style={styles.price}>{`$${item.price}`}</Text>
                     </View>
                   )
-                }
               })}
             </View>
           )
