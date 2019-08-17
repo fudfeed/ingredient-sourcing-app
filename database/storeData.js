@@ -101,7 +101,7 @@ const names = [
   'Mena Mini Market'
 ]
 
-const ingredients = [
+const allIngredients = [
   'arugula',
   'beet greens',
   'chiles',
@@ -1076,9 +1076,7 @@ const ingredients = [
   'olive oil',
   'onion',
   'potato starch',
-  'Salt & Pepper',
-  'Salt & Pepper',
-  'salt and pepper',
+  'salt & pepper',
   'tomato juice',
   'unsalted butter',
   'water',
@@ -1137,6 +1135,9 @@ const hashtags = [
   'drink'
 ]
 
+const setObj = new Set(allIngredients)
+const ingredients = [...setObj]
+
 const getRand = (min, max) => Math.random() * (max - min) + min;
 
 const storeSeedGen = () => {
@@ -1150,9 +1151,9 @@ const storeSeedGen = () => {
     const ingrLen = Math.floor(getRand(10, 50));
     let arr = [];
     for (j = 0; j < ingrLen; j++) {
-      const ingrName = ingredients[Math.floor(getRand(0, 990))]
+      const ingrName = ingredients[Math.floor(getRand(0, 460))]
       const price = (getRand(0.99, 50).toFixed(2))
-      arr.push({ name: ingrName, price })
+      arr.push({ name: ingrName.toLowerCase(), price })
     }
     const store = {
       id,
