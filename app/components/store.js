@@ -1,30 +1,31 @@
 import React, { Fragment } from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
-  Text,
-  StatusBar,
+  Text
 } from 'react-native';
 
-const Store = () => {
+const Store = (props) => {
   return (
     <Fragment>
       <SafeAreaView>
-        <View>
-          <View style={styles.store}>
-            <Text>This is Store</Text>
-          </View>
-          <View style={styles.storeItem}>
-            <Text>This is Ingredient 1</Text>
-            <Text>Price</Text>
-          </View>
-          <View style={styles.storeItem}>
-            <Text>This is Ingredient 2</Text>
-            <Text>Price</Text>
-          </View>
-        </View>
+        {props.stores.map((store, key) => {
+          return (
+            <View key={key}>
+              <Text style={styles.store}>{store.name}</Text>
+              {store.ingredients.map((item, key) => {
+                if (item.name === props.query) {
+                  return (
+                    <View style={styles.storeItem} key={key}>
+                      <Text style={styles.item}>{item.name.trim()}</Text>
+                      <Text style={styles.price}>{`$${item.price}`}</Text>
+                    </View>
+                  )
+                }
+              })}
+            </View>
+          )
+        })}
       </SafeAreaView>
     </Fragment>
   );
@@ -33,13 +34,18 @@ const Store = () => {
 const styles = {
   store: {
     padding: 10,
-    fontSize: 14
+    fontSize: 16
   },
   storeItem: {
     fontSize: 10,
-    // padding: 5,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    paddingLeft: 15
+  },
+  item: {
+    flex: 3
+  },
+  price: {
+    flex: 1
   }
 };
 
