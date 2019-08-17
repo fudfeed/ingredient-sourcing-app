@@ -14,14 +14,12 @@ const Store = (props) => {
             <View key={key}>
               <Text style={styles.store}>{store.name}</Text>
               {store.ingredients.map((item, key) => {
-                if (item.name === props.query) {
                   return (
                     <View style={styles.storeItem} key={key}>
-                      <Text style={styles.item}>{item.name.trim()}</Text>
+                      <Text style={styles.item}>{item.name}</Text>
                       <Text style={styles.price}>{`$${item.price}`}</Text>
                     </View>
                   )
-                }
               })}
             </View>
           )
@@ -33,19 +31,26 @@ const Store = (props) => {
 
 const styles = {
   store: {
-    padding: 10,
-    fontSize: 16
+    margin: 10,
+    fontSize: 16,
+    fontWeight: "600"
   },
   storeItem: {
     fontSize: 10,
     flexDirection: 'row',
-    paddingLeft: 15
+    marginLeft: 15,
+    marginRight: 15,
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderBottomColor: '#E8E8E8',
+    borderBottomWidth: 1
   },
   item: {
     flex: 3
   },
   price: {
-    flex: 1
+    flex: 1,
+    textAlign: 'right'
   }
 };
 

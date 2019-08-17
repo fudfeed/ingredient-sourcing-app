@@ -2,7 +2,7 @@ const names = [
   'Ralphs',
   'Vons',
   'Trader Joe\'s',
-  'Sprouts Farmers Market',
+  'Sprouts',
   'Superior Grocers',
   'Northgate Market',
   'Pavilions',
@@ -15,8 +15,8 @@ const names = [
   'Element 29 Deli',
   'Culver City Farmers Market',
   'Playa Vista Farmers Market',
-  'Westchester Farms Market Sunday',
-  'Inglewood Certified Farmer\'s market',
+  'Westchester Market',
+  'Inglewood Market',
   'Fresh \'n Easy',
   'Mini Mart Grocery',
   'Handy Mart',
@@ -27,7 +27,7 @@ const names = [
   'Ralphs',
   'Vons',
   'Trader Joe\'s',
-  'Sprouts Farmers Market',
+  'Sprouts',
   'Superior Grocers',
   'Northgate Market',
   'Pavilions',
@@ -40,8 +40,8 @@ const names = [
   'Element 29 Deli',
   'Culver City Farmers Market',
   'Playa Vista Farmers Market',
-  'Westchester Farms Market Sunday',
-  'Inglewood Certified Farmer\'s market',
+  'Westchester Market',
+  'Inglewood Market',
   'Fresh \'n Easy',
   'Mini Mart Grocery',
   'Handy Mart',
@@ -52,7 +52,7 @@ const names = [
   'Ralphs',
   'Vons',
   'Trader Joe\'s',
-  'Sprouts Farmers Market',
+  'Sprouts',
   'Superior Grocers',
   'Northgate Market',
   'Pavilions',
@@ -65,8 +65,8 @@ const names = [
   'Element 29 Deli',
   'Culver City Farmers Market',
   'Playa Vista Farmers Market',
-  'Westchester Farms Market Sunday',
-  'Inglewood Certified Farmer\'s market',
+  'Westchester Market',
+  'Inglewood Market',
   'Fresh \'n Easy',
   'Mini Mart Grocery',
   'Handy Mart',
@@ -77,7 +77,7 @@ const names = [
   'Ralphs',
   'Vons',
   'Trader Joe\'s',
-  'Sprouts Farmers Market',
+  'Sprouts',
   'Superior Grocers',
   'Northgate Market',
   'Pavilions',
@@ -90,8 +90,8 @@ const names = [
   'Element 29 Deli',
   'Culver City Farmers Market',
   'Playa Vista Farmers Market',
-  'Westchester Farms Market Sunday',
-  'Inglewood Certified Farmer\'s market',
+  'Westchester Market',
+  'Inglewood Market',
   'Fresh \'n Easy',
   'Mini Mart Grocery',
   'Handy Mart',
@@ -1148,10 +1148,10 @@ const storeSeedGen = () => {
     const latitude = getRand(34.035497, 33.961364);
     const longitude = getRand(-118.458218, -118.299864);
     const score = Math.floor(getRand(0, 10));
-    const ingrLen = Math.floor(getRand(10, 50));
+    const ingrLen = Math.floor(getRand(30, 50));
     let arr = [];
     for (j = 0; j < ingrLen; j++) {
-      const ingrName = ingredients[Math.floor(getRand(0, 460))]
+      const ingrName = ingredients[Math.floor(getRand(0, 100))]
       const price = (getRand(0.99, 50).toFixed(2))
       arr.push({ name: ingrName.toLowerCase(), price })
     }

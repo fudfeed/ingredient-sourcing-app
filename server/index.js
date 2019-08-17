@@ -19,39 +19,54 @@ app.get('/recipes', (req, res) => {
     });
 });
 
-app.get('/stores', (req, res) => {
-  dbHelpers.getAllStores()
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      res.status(404).send('error server get reviews');
-    });
-});
+// app.get('/stores', (req, res) => {
+//   dbHelpers.getAllStores()
+//     .then((data) => {
+//       res.status(200).send(data);
+//     })
+//     .catch((err) => {
+//       res.status(404).send('error server get reviews');
+//     });
+// });
 
 
 
 //routes below are for use in Wayne's Search component for ingredient search
-app.get('/stores/:ingredient', (req, res) => {
-  console.log('store search activated')
-  let { ingredient } = req.params;
-  db.Store.find({'ingredients.name': ingredient}).limit(5)
-  .then((store) => {
-    res.status(200).send(store);
-  })
-  .catch((error) => {
-    res.status(404).send(error);
-  })
+app.get('/stores?', (req, res) => {
+  let { ingredient } = req.query;
+  //ingredient is [query1, query2, query3, ...]
+  db.Store.find({ 'ingredients.name': { $all: ingredient } }).limit(2)
+    .then((storeArray) => {
+      let filteredArray = [];
+      const filterIrrelevantResults = (store, items) => {
+        for (let i of store) {
+          let { id, name, latitude, longitude, score } = i;
+          let ingredients = [];
+          filteredArray.push({ id, name, latitude, longitude, score, ingredients })
+          for (let j of i.ingredients) {
+            if (items.includes(j.name)) {
+              filteredArray[filteredArray.length - 1].ingredients.push(j);
+            }
+          }
+        }
+      }
+      filterIrrelevantResults(storeArray, ingredient);
+      res.status(200).send(filteredArray);
+    })
+    .catch((error) => {
+      res.status(404).send(error);
+    })
 })
 
-app.get('/recipes/:ingredient', (req, res) => {
-  let { ingredient } = req.params;
-  db.Recipe.find({'ingredients.name': ingredient}).limit(3)
-  .then((recipes) => {
-    res.status(200).send(recipes);
-  })
-  .catch((error) => {
-    res.status(404).send(error);
-  })
+
+app.get('/recipes?', (req, res) => {
+  let { ingredient } = req.query;
+  db.Recipe.find({ 'ingredients.name': ingredient }).limit(3)
+    .then((recipes) => {
+      res.status(200).send(recipes);
+    })
+    .catch((error) => {
+      res.status(404).send(error);
+    })
 })
 /************************************************************************/
