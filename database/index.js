@@ -44,7 +44,7 @@ const storeSchema = mongoose.Schema(
     score: { type: Number, required: true },
     ingredients: [{
       name: { type: String, required: true },
-      price: { type: Number, required: true }
+      price: { type: String, required: true }
     }]
   }
 );
