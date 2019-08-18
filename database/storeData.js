@@ -1171,12 +1171,3 @@ const storeSeedGen = () => {
 const storeSeed = storeSeedGen();
 
 module.exports = storeSeed;
-/*
-TL 34.030554, -118.458218
-BL 33.961364, -118.454156
-TR 34.035497, -118.313328
-BR 33.967193, -118.299864
-
-lattitude falls between 33.961364 and 34.035497
-longitude falls between -118.458218 and -118.299864
-*/

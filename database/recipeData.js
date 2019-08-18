@@ -1,3 +1,5 @@
+const faker = require('faker')
+
 const recipes = [
   {
     title: 'Gaeng Khae (Spicy Thai Vegetable Soup)',
@@ -3572,4 +3574,62 @@ const recipes = [
   }
 ];
 
-module.exports = recipes
+const ratings = [
+  1,
+  2,
+  3,
+  3,
+  3,
+  4,
+  4,
+  4,
+  4,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5
+]
+
+const getRand = (min, max) => Math.random() * (max - min) + min;
+
+const recipeSeedGen = () => {
+  let output = [], i;
+  for (i = 0; i < 100; i++) {
+    const id = i + 1;
+    const chef = {
+      name: faker.internet.userName(),
+      avatar: faker.image.avatar()
+    }
+    const commentLen = Math.floor(getRand(0, 5))
+    let comments = []
+    for (let j = 0; j < commentLen; j++) {
+      let comment = {
+        body: faker.lorem.sentences(),
+        chef: {
+          name: faker.internet.userName(),
+          avatar: faker.image.avatar()
+        },
+        rating: ratings[Math.floor(getRand(0, 15))],
+        date: new Date(getRand(1539129600000, 1565921040000))
+      }
+      comments.push(comment)
+    }
+    output[i] = {
+      id,
+      chef,
+      name: recipes[i].title,
+      ingredients: recipes[i].ingredients,
+      instructions: recipes[i].instructions,
+      comments,
+      hashtags: recipes[i].hashtags,
+      photo: recipes[i].image
+    }
+  }
+  return output
+}
+
+const recipeSeed = recipeSeedGen();
+
+module.exports = recipeSeed;
