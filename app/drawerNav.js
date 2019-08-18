@@ -51,13 +51,25 @@ const DrawerNavigator = createDrawerNavigator(
           },
         },
         Camera: {
-          screen: Input
+          screen: Input,
+          navigationOptions: {
+            header: (props) => (
+
+              <View style={{ backgroundColor: '#FFF' }}>
+                <Header
+                  handleMenu={props.navigation.openDrawer}
+                  navi={props.navigation}
+                  stickyHeaderIndices={[0]}
+                > </Header>
+              </View>
+            )
+          }
         },
         FudMap: {
           screen: fudMap
         }
       }, {
-        initialRouteName: 'Search'
+        initialRouteName: 'Feed'
         }
 
       )

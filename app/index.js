@@ -18,7 +18,7 @@ export default class MotherShip extends React.Component {
 
   render() {
     return (
-      <DrawerNavi screenProps={ { recipes: this.state.searchData, grabSearchData: this.grabSearchData }} grabSearchData={this.grabSearchData}/>
+      <DrawerNavi />
     )
   }
 }
