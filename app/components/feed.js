@@ -21,30 +21,30 @@ class Feed extends React.Component {
   }
 
   componentDidMount() {
-    // console.warn(this.props.navigation.state)
-    // if (this.props.navigation.state.params.recipeSearch && this.props.navigation.state.params.recipeSearch.length) {
-    //   this.setState({
-    //     feedData: this.props.navigation.state.params.recipeSearch
-    //   })
-    // } else {
-      axios.get('http://localhost:3000/recipes')
-        .then((data) => {
-          var newData = data.data;
-          this.setState({
-            feedData: newData
-          });
-        })
-        .catch((err) => {
-          alert('data retrieval failure', err);
-        })
-      // }
+    axios.get('http://localhost:3000/recipes')
+      .then(({ data }) => {
+        this.setState({
+          feedData: data
+        });
+      })
+      .catch((err) => {
+        alert('data retrieval failure', err);
+      })
   }
 
-  componentDidUpdate() {
-    console.warn('I updated')
-  }
+  componentDidUpdate(prevProps) {
+    const { navigation } = this.props;
+    const recipeSearch = navigation.getParam('recipeSearch')
+      if (prevProps !== this.props) {
+        this.setState({
+          feedData: recipeSearch
+          })
+        }
+    }
 
   render() {
+    // const { navigation } = this.props;
+    // const recipeData = navigation.getParam('recipeSearch', this.state.feedData)
     return (
       <SafeAreaView>
         {/* {console.warn('stuff:', this.props.navigation.state.params.recipes ? this.props.navigation : null)} */}
@@ -52,7 +52,7 @@ class Feed extends React.Component {
         }}
           // data={this.props.navigation.state.params.recipes.length > 0 ? this.props.navigation.state.params.recipes : this.state.feedData}
           data={this.state.feedData}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={item => item.name.toString()}
           renderItem={({ item }, i) => (
             <Recipe key={i} item={item} />
           )}

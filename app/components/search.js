@@ -43,16 +43,13 @@ class Search extends React.Component {
       })
   }
 
+
   //SearchByRecipe gets called when Search By Recipe button is pressed
   //sends a request to the server to query by text in the input field
   searchByRecipe(ingredient) {
     axios.get(`http://localhost:3000/search/recipes?ingredient=${ingredient}`)
-      .then((recipes) => {
-        this.setState({
-          recipes: recipes
-        }, () => {
-          this.props.navigation.navigate('Feed', {recipeSearch: this.state.recipes})
-        })
+      .then(({data}) => {
+        this.props.navigation.navigate('Feed', { recipeSearch: data })
       })
       .catch((error) => {
         console.log('failed to search by recipe', error);
