@@ -25,7 +25,7 @@ class Feed extends React.Component {
       .then((data) => {
         var newData = data.data;
         this.setState({
-          feedData: newData
+          feedData: data
         });
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ class Feed extends React.Component {
     return (
       this.state.feedData.map((obj, i) => {
         return (
-          <FeedCard key={i} name={obj.name} imageUrl={obj.photo} styles={styles} />
+          <Recipe key={i} item={item} />
         )
       })
     )
@@ -52,23 +52,15 @@ class Feed extends React.Component {
           data={this.props.navigation.state.params.recipes.length > 0 ? this.props.navigation.state.params.recipes : this.state.feedData}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <FeedCard name={item.name} imageUrl={item.photo} styles={styles} />
-            )}
-            maxToRenderPerBatch={2}
-            updateCellsBatchingPeriod={2}
-            initialNumToRender={3}
-            onEndReachedThreshold={0.1}
+            <Recipe item={item} />
+          )}
+          maxToRenderPerBatch={2}
+          updateCellsBatchingPeriod={2}
+          initialNumToRender={3}
         />
       </SafeAreaView>
     );
   }
 }
-const styles = StyleSheet.create({
-  content: {
-    marginTop: 25,
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-})
 
 export default Feed;
