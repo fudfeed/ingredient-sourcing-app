@@ -1,7 +1,7 @@
 const { Recipe, Store } = require('./index.js');
 
 const getAllRecipes = () => {
-  return Recipe.find()
+  return Recipe.find().sort({id: -1})
 }
 
 const getAllStores = () => {

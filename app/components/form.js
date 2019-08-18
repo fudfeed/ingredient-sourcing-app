@@ -40,25 +40,8 @@ const Form = (props) => {
         // console.warn(`Posted ${JSON.stringify(payload)}`)
       })
       .catch(err => console.warn(err))
-    props.navi.navigate('Feed', { params: payload })
+    props.navi.navigate('Feed', { postData: payload })
     };
-
-  // const postLoad = async (payload) => {
-  //   try {
-  //     let response = await fetch('http://localhost:3000/recipes', {
-  //       method: 'POST',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(payload),
-  //     });
-  //     let responseJson = await response.json();
-  //     return responseJson;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 
   return (
     <Container style={styles.container}>
