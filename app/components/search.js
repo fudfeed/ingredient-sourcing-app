@@ -32,10 +32,10 @@ class Search extends React.Component {
   //searchByStore gets called when the Search By Stores button is pressed
   //sends a request to the server to query by text in the input field
   searchByStore(ingredient) {
-    axios.get(`/stores/${ingredient}`)
+    axios.get(`http://localhost:3000/search/stores?ingredient=${ingredient}`)
       .then((store) => {
         this.setState({
-          stores: [...store]
+          stores: store
         });
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ class Search extends React.Component {
     axios.get(`http://localhost:3000/search/recipes?ingredient=${ingredient}`)
       .then((recipes) => {
         this.setState({
-          recipes: [...recipes]
+          recipes: recipes
         })
       })
       .catch((error) => {
@@ -71,10 +71,9 @@ class Search extends React.Component {
   pushIntoSearchArray(txt) {
     let newArray = [...this.state.searchValue];
     newArray.push(txt);
-    console.warn('newArray', newArray);
     this.setState({
       searchValue: newArray
-    }, () => console.warn('something happened?'))
+    })
   }
 
 
