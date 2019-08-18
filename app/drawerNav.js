@@ -66,7 +66,19 @@ const DrawerNavigator = createDrawerNavigator(
           }
         },
         FudMap: {
-          screen: fudMap
+          screen: fudMap,
+          navigationOptions: {
+            header: (props) => (
+
+              <View style={{ backgroundColor: '#FFF' }}>
+                <Header
+                  handleMenu={props.navigation.openDrawer}
+                  navi={props.navigation}
+                  stickyHeaderIndices={[0]}
+                > </Header>
+              </View>
+            )
+          }
         }
       }, {
         initialRouteName: 'Feed'
