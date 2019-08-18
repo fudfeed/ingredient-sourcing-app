@@ -1,36 +1,47 @@
 import React, { Fragment, PureComponent } from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableHighlight, AppRegistry, Button, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableHighlight, AppRegistry, Button, TouchableOpacity, Image, YellowBox } from 'react-native';
 import Header from './header.js';
 import { RNCamera } from 'react-native-camera';
-
-
+import Form from './form.js'
 
 // export default Input;
-
+YellowBox.ignoreWarnings([
+  'Warning: c',
+  'Warning: U'
+]);
 
 class Input extends React.Component {
-  construtor(props) {
-    state = {
-      photo: ''
-    }
+  // construtor(props) {
+  //   state = {
+  //     photo: '',
+  //     view: 'camera'
+  //   }
+  //   // this.renderCameraView = this.renderCameraView.bind(this)
+  // }
+
+  state = {
+      photo: '',
+      view: 'camera'
   }
+
   takePicture = async () => {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync(options);
       this.setState({
-        photo: data.uri
-      }, () => console.warn(this.state.photo))
+        photo: data.uri,
+        view: 'photo'
+      })
     }
   };
 
-  render() {
+  renderCameraView = () => {
     return (
       <Fragment>
         <SafeAreaView>
-        <Header handleMenu={this.props.navigation.openDrawer} />
-        <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
-        </ScrollView>
+          <Header handleMenu={this.props.navigation.openDrawer} />
+          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false} >
+          </ScrollView>
         </SafeAreaView>
         <View style={styles.container}>
           <RNCamera
@@ -56,17 +67,68 @@ class Input extends React.Component {
               console.log(barcodes);
             }}
           />
-          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-            <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-              <Text style={{ fontSize: 14 }}> CLICK </Text>
+          <View style={{flex : 0}}>
+
+          </View>
+          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }} >
+            <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture} >
+              <Text style={{ fontSize: 14 }} > CLICK </Text>
             </TouchableOpacity>
           </View>
         </View>
-
-
       </Fragment>
-    );
+    )
   }
+
+  renderPhotoView = () => {
+    return (
+      <Fragment>
+        <SafeAreaView>
+          <Header handleMenu={this.props.navigation.openDrawer} />
+          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
+          </ScrollView>
+          <View >
+            <Image
+              style={styles.photo}
+              source={{uri: this.state.photo}}
+              />
+            <Button 
+              onPress={() => this.setState({ view: 'camera' })}
+              title="Take a New Photo"
+            />
+            <Button
+              onPress={() => this.setState({ view: 'recipe' })}
+              title="Enter Recipe"
+            />
+          </View>
+        </SafeAreaView>
+      </Fragment>
+    )
+  }
+
+  renderFormView = () => {
+    return (
+      <Fragment>
+        <SafeAreaView>
+          <Header handleMenu={this.props.navigation.openDrawer} />
+          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
+          </ScrollView>
+        </SafeAreaView>
+        <Form photo={this.state.photo}/>
+      </Fragment>
+    )
+  }
+
+  render() {
+      return (
+        <Fragment>
+          {(this.state.view === 'camera') ? this.renderCameraView()
+            : (this.state.view === 'photo') ? this.renderPhotoView()
+            : (this.state.view === 'recipe') ? this.renderFormView()
+            : <Text>{this.state.photo}</Text>}
+        </Fragment>
+      );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -89,6 +151,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 20,
   },
+  photo: {
+    alignSelf: 'center',
+    height: 380,
+    width: 380,
+  }
 });
 
 export default Input;

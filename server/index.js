@@ -2,8 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/index');
 const dbHelpers = require('../database/dbHelpers');
+const morgan = require('morgan')
 
 const app = express();
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('dev'))
 
 app.listen(3000, function () {
   console.log('listening on port 3000!');
@@ -15,7 +20,7 @@ app.get('/recipes', (req, res) => {
       res.status(200).send(data);
     })
     .catch((err) => {
-      res.status(404).send('error server get reviews');
+      res.status(404).send('error server get recipes');
     });
 });
 
@@ -25,10 +30,21 @@ app.get('/recipes', (req, res) => {
 //       res.status(200).send(data);
 //     })
 //     .catch((err) => {
-//       res.status(404).send('error server get reviews');
+//       res.status(404).send('error server get stores');
 //     });
 // });
 
+//route for recipe post (jeremy)
+app.post('/recipes', (req, res) => {
+  const { payload } = req.body
+  dbHelpers.postRecipe(payload)
+    .then((data) => {
+      res.status(201).send('posted');
+    })
+    .catch((err) => {
+      res.status(404).send('error server post recipe');
+    });
+})
 
 
 //routes below are for use in Wayne's Search component for ingredient search
