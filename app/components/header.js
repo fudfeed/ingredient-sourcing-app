@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
-import { NavigateActions, SwitchActions } from 'react-navigation';
 
 const Header = (props) => {
   return (
@@ -36,6 +35,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
     padding: 10,
+    marginTop: 37,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between'

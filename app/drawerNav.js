@@ -13,6 +13,7 @@ import Feed from './components/feed.js'
 import Input from './components/input.js';
 import fudMap from './components/map.js';
 import Search from './components/search.js';
+import Header from './components/header.js';
 
 const navigateToScreen = (route) => () => {
   const navigateAction = NavigationActions.navigate({
@@ -26,7 +27,18 @@ const DrawerNavigator = createDrawerNavigator(
     DrawerMenu: {
       screen: createStackNavigator({
         Feed: {
-          screen: Feed
+          screen: Feed,
+          navigationOptions: {
+            header: (props) => (
+                <View style={{backgroundColor: '#FFF'}}>
+                  <Header 
+                  handleMenu={props.navigation.openDrawer}
+                    navi={props.navigation}
+                    stickyHeaderIndices={[0]}
+                  > </Header>
+                </View>
+            )
+          },
         },
         Search: {
           screen: Search
@@ -37,12 +49,14 @@ const DrawerNavigator = createDrawerNavigator(
         FudMap: {
           screen: fudMap
         }
-      }, {}
+      }, {
+
+
+        }
 
       )
     },
   },
-
   {
     initialRouteName: 'DrawerMenu',
     drawerType: 'front',
@@ -51,8 +65,8 @@ const DrawerNavigator = createDrawerNavigator(
     overlayColor: '#888888',
     paths: 'test',
     contentComponent: (props) => (
-      <ScrollView style={{marginTop: 33,marginLeft: 20}}>
-        <View style={{ marginTop: 20}}>
+      <ScrollView style={{ marginTop: 33, marginLeft: 20 }}>
+        <View style={{ marginTop: 20 }}>
           <Text onPress={() => props.navigation.navigate('Feed')}>
             füdfeed
           </Text>

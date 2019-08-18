@@ -28,26 +28,12 @@ export default class MotherShip extends React.Component {
     this.state = {
       searchData: [],
     }
-    this.hopTo = this.hopTo.bind(this);
-    this.grabSearchData = this.grabSearchData.bind(this);
   }
 
-  hopTo = (route) => () => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: route
-    });
-    this.props.navigation.dispatch(navigateAction);
-  }
-
-  grabSearchData(data) {
-    this.setState = {
-      searchData: data
-    }
-  }
 
   render() {
     return (
-      <DrawerNavi />
+      <DrawerNavi screenProps={this.state}/>
     )
   }
 }
