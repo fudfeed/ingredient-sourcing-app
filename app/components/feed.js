@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import axios from 'axios';
 import { FlatList } from "react-native-gesture-handler";
-import FeedCard from './feedCard'
+import Recipe from './recipe'
 
 class Feed extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Feed extends React.Component {
       loadingMore: false,
       error: null
     };
-    this.renderImages = this.renderImages.bind(this);
+    // this.renderImages = this.renderImages.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class Feed extends React.Component {
       .then((data) => {
         var newData = data.data;
         this.setState({
-          feedData: data
+          feedData: newData
         });
       })
       .catch((err) => {
@@ -33,15 +33,15 @@ class Feed extends React.Component {
       })
   }
 
-  renderImages(props) {
-    return (
-      this.state.feedData.map((obj, i) => {
-        return (
-          <Recipe key={i} item={item} />
-        )
-      })
-    )
-  }
+  // renderImages(props) {
+  //   return (
+  //     this.state.feedData.map((item, i) => {
+  //       return (
+  //         <RecipeDetail key={i} item={item} />
+  //       )
+  //     })
+  //   )
+  // }
 
   render() {
     return (
@@ -49,10 +49,11 @@ class Feed extends React.Component {
         {/* {console.warn('stuff:', this.props.navigation.state.params.recipes ? this.props.navigation : null)} */}
         <FlatList contentContainerStyle={{
         }}
-          data={this.props.navigation.state.params.recipes.length > 0 ? this.props.navigation.state.params.recipes : this.state.feedData}
+          // data={this.props.navigation.state.params.recipes.length > 0 ? this.props.navigation.state.params.recipes : this.state.feedData}
+          data={this.state.feedData}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => (
-            <Recipe item={item} />
+          renderItem={({ item }, i) => (
+            <Recipe key={i} item={item} />
           )}
           maxToRenderPerBatch={2}
           updateCellsBatchingPeriod={2}
