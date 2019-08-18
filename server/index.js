@@ -35,7 +35,7 @@ app.get('/recipes', (req, res) => {
 app.get('/stores?', (req, res) => {
   let { ingredient } = req.query;
   //ingredient is [query1, query2, query3, ...]
-  db.Store.find({ 'ingredients.name': { $all: ingredient } }).limit(2)
+  db.Store.find({ 'ingredients.name': { $all: ingredient } }).limit(5)
     .then((storeArray) => {
       let filteredArray = [];
       const filterIrrelevantResults = (store, items) => {
