@@ -59,10 +59,12 @@ app.get('/stores?', (req, res) => {
 })
 
 
-app.get('/recipes?', (req, res) => {
+app.get('/search/recipes?', (req, res) => {
   let { ingredient } = req.query;
+  console.log('ingredient:', ingredient)
   db.Recipe.find({ 'ingredients.name': ingredient }).limit(3)
     .then((recipes) => {
+      console.log('recipe', recipes)
       res.status(200).send(recipes);
     })
     .catch((error) => {
