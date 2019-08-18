@@ -101,6 +101,7 @@ class Recipe extends React.Component {
           {this.state.rating === 0 && <Text style={styles.rating}>⭒⭒⭒⭒⭒</Text>}
         </View>
         <TouchableOpacity onPress={this.handleRecipeOnPress}>
+          {/* {console.warn(this.props.photo)} */}
           <Image source={{ uri: this.props.item.photo }} style={styles.image} />
         </TouchableOpacity>
         <View style={styles.userContainer}>
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   image: {
-    width: 400,
+    width: 380,
     height: 300
   },
   userContainer: {
