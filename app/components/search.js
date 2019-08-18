@@ -50,6 +50,8 @@ class Search extends React.Component {
       .then((recipes) => {
         this.setState({
           recipes: recipes
+        }, () => {
+          this.props.navigation.navigate('Feed', {recipeSearch: this.state.recipes})
         })
       })
       .catch((error) => {

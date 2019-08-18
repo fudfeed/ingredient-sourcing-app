@@ -6,6 +6,7 @@ import {
 import axios from 'axios';
 import { FlatList } from "react-native-gesture-handler";
 import Recipe from './recipe'
+import console = require("console");
 
 class Feed extends React.Component {
   constructor(props) {
@@ -21,27 +22,28 @@ class Feed extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/recipes')
-      .then((data) => {
-        var newData = data.data;
-        this.setState({
-          feedData: newData
-        });
-      })
-      .catch((err) => {
-        alert('data retrieval failure', err);
-      })
+    // console.warn(this.props.navigation.state)
+    // if (this.props.navigation.state.params.recipeSearch && this.props.navigation.state.params.recipeSearch.length) {
+    //   this.setState({
+    //     feedData: this.props.navigation.state.params.recipeSearch
+    //   })
+    // } else {
+      axios.get('http://localhost:3000/recipes')
+        .then((data) => {
+          var newData = data.data;
+          this.setState({
+            feedData: newData
+          });
+        })
+        .catch((err) => {
+          alert('data retrieval failure', err);
+        })
+      // }
   }
 
-  // renderImages(props) {
-  //   return (
-  //     this.state.feedData.map((item, i) => {
-  //       return (
-  //         <RecipeDetail key={i} item={item} />
-  //       )
-  //     })
-  //   )
-  // }
+  componentDidUpdate() {
+    console.warn('I updated')
+  }
 
   render() {
     return (
