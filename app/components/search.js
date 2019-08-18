@@ -14,7 +14,6 @@ import {
 import Header from './header.js';
 import axios from 'axios';
 
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +46,7 @@ class Search extends React.Component {
   //SearchByRecipe gets called when Search By Recipe button is pressed
   //sends a request to the server to query by text in the input field
   searchByRecipe(ingredient) {
-    axios.get(`/recipes?ingredient=${ingredient}`)
+    axios.get(`http://localhost:3000/search/recipes?ingredient=${ingredient}`)
       .then((recipes) => {
         this.setState({
           recipes: [...recipes]
@@ -67,14 +66,17 @@ class Search extends React.Component {
     })
   }
 
+  //this function will push the text in the search fields into an array so that they
+  //can be parsed into queries to be sent through by axios
   pushIntoSearchArray(txt) {
     let newArray = [...this.state.searchValue];
     newArray.push(txt);
     console.warn('newArray', newArray);
     this.setState({
       searchValue: newArray
-    })
+    }, () => console.warn('something happened?'))
   }
+
 
   render() {
     return (
@@ -87,8 +89,8 @@ class Search extends React.Component {
               {/* start of search field container */}
               {this.state.fieldCount.map((x, index) => {
                 return (
-                  <View style={styles.searchBox}>
-                    <TextInput id={index} key={index} placeholder='add an ingredient!' style={styles.searchField}></TextInput>
+                  <View style={styles.searchBox} id={index}>
+                    <TextInput autoCapitalize='none' onEndEditing={(e) => this.pushIntoSearchArray(e.nativeEvent.text)} key={index} placeholder='add an ingredient!' style={styles.searchField}></TextInput>  
                   </View>
                 )
               })}
