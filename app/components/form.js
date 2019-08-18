@@ -37,10 +37,11 @@ const Form = (props) => {
     // console.warn(payload)
     axios.post('http://localhost:3000/recipes', { payload })
       .then((data) => {
-        console.warn(`Posted ${payload}`)
+        // console.warn(`Posted ${JSON.stringify(payload)}`)
       })
       .catch(err => console.warn(err))
-  };
+    props.navi.navigate('Feed', { params: payload })
+    };
 
   // const postLoad = async (payload) => {
   //   try {

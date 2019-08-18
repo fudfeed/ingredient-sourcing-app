@@ -38,11 +38,11 @@ class Input extends React.Component {
   renderCameraView = () => {
     return (
       <Fragment>
-        <SafeAreaView>
+        {/* <SafeAreaView>
           <Header handleMenu={this.props.navigation.openDrawer} />
           <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false} >
           </ScrollView>
-        </SafeAreaView>
+        </SafeAreaView> */}
         <View style={styles.container}>
           <RNCamera
             ref={ref => {
@@ -67,15 +67,13 @@ class Input extends React.Component {
               console.log(barcodes);
             }}
           />
-          <View style={{flex : 0}}>
-
-          </View>
           <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }} >
             <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture} >
-              <Text style={{ fontSize: 14 }} > CLICK </Text>
+              <Text style={{ fontSize: 14 }} > Capture </Text>
             </TouchableOpacity>
           </View>
         </View>
+        {/* <View style={styles.container2}></View> */}
       </Fragment>
     )
   }
@@ -84,9 +82,9 @@ class Input extends React.Component {
     return (
       <Fragment>
         <SafeAreaView>
-          <Header handleMenu={this.props.navigation.openDrawer} />
+          {/* <Header handleMenu={this.props.navigation.openDrawer} />
           <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
-          </ScrollView>
+          </ScrollView> */}
           <View >
             <Image
               style={styles.photo}
@@ -109,12 +107,12 @@ class Input extends React.Component {
   renderFormView = () => {
     return (
       <Fragment>
-        <SafeAreaView>
+        {/* <SafeAreaView>
           <Header handleMenu={this.props.navigation.openDrawer} />
           <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
           </ScrollView>
-        </SafeAreaView>
-        <Form photo={this.state.photo}/>
+        </SafeAreaView> */}
+        <Form photo={this.state.photo} navi={this.props.navigation}/>
       </Fragment>
     )
   }
@@ -133,9 +131,11 @@ class Input extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 2,
     flexDirection: 'column',
-    backgroundColor: 'black',
+    backgroundColor: '#999',
+    height: 380,
+    width: 400
   },
   preview: {
     flex: 1,
@@ -153,8 +153,9 @@ const styles = StyleSheet.create({
   },
   photo: {
     alignSelf: 'center',
-    height: 380,
-    width: 380,
+    height: 400,
+    width: 400,
+    marginTop: -100
   }
 });
 
