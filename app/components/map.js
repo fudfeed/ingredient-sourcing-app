@@ -100,7 +100,7 @@ class fudMap extends React.Component {
     return (
       <Fragment>
         <SafeAreaView>
-          <Header handleMenu={this.props.navigation.openDrawer} />
+          {/* <Header handleMenu={this.props.navigation.openDrawer} /> */}
           <ScrollView>
             <View style={styles.container}>
               <MapView
