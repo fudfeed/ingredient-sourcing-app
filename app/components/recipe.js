@@ -6,7 +6,9 @@ import {
   Image,
   StyleSheet
 } from 'react-native';
-import RecipeDetail from './recipeDetail';
+
+import Comments from './comments.js'
+import RecipeDetail from './recipeDetail.js';
 
 
 class Recipe extends React.Component {
@@ -14,11 +16,14 @@ class Recipe extends React.Component {
     super(props);
     this.state = {
       rating: 0,
-      displayRecipe: false
+      displayRecipe: false,
+      displayComments: false
     };
     this.displayRating = this.displayRating.bind(this);
     this.handleRecipeOnPress = this.handleRecipeOnPress.bind(this);
-    this.displayCollapsable = this.displayCollapsable.bind(this);
+    this.handleCommentOnPress = this.handleCommentOnPress.bind(this);
+    this.displayRecipeDetail = this.displayRecipeDetail.bind(this);
+    this.displayComments = this.displayComments.bind(this);
   }
 
   handleRecipeOnPress = () => {
@@ -27,10 +32,16 @@ class Recipe extends React.Component {
     })
   }
 
-  displayCollapsable = () => {
+  handleCommentOnPress = () => {
+    this.setState({
+      displayComments: !this.state.displayComments
+    })
+  }
+
+  displayRecipeDetail = () => {
     if (this.state.displayRecipe) {
-      return(
-        <RecipeDetail item={this.props.item} />
+      return (
+        <RecipeDetail item={this.props.item}/>
       );
     } else {
       return (
@@ -40,6 +51,24 @@ class Recipe extends React.Component {
           </TouchableOpacity>
         </View>
       );
+    }
+  }
+
+  displayComments = () => {
+    if (this.props.item.comments.length > 0) {
+      if (this.state.displayComments) {
+        return (
+          <Comments comments={this.props.item.comments} />
+        )
+      } else {
+        return (
+          <View style={styles.collapsable}>
+            <TouchableOpacity onPress={this.handleCommentOnPress}>
+              <Text style={styles.collapsableText}>{`See all ${this.props.item.comments.length} comments`}</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      }
     }
   }
 
@@ -78,7 +107,8 @@ class Recipe extends React.Component {
           <Image source={{ uri: this.props.item.chef.avatar }} style={styles.avatar} />
           <Text style={styles.chef}>{this.props.item.chef.name}</Text>
         </View>
-        {this.displayCollapsable()}
+        {this.displayRecipeDetail()}
+        {this.displayComments()}
       </View>
     )
   }
@@ -96,7 +126,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   rating: {
-    fontSize: 20
+    fontSize: 20,
   },
   image: {
     width: 400,
@@ -119,12 +149,43 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingTop: 5
   },
+  descriptionContainer: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  description: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 5
+  },
+  comments: {
+    padding: 10,
+    paddingBottom: 5
+  },
+  commentUser: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  commentUserName: {
+    fontWeight: "500",
+  },
+  commentDate: {
+    color: '#777',
+    fontSize: 12,
+    paddingTop: 5
+  },
+  subTitles: {
+    fontWeight: "600"
+  },
   collapsable: {
-    margin: 15,
+    margin: 10,
+    marginLeft: 15,
   },
   collapsableText: {
     color: '#555'
-  }
+  },
 })
 
 export default Recipe;
