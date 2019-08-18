@@ -1,6 +1,5 @@
-import React, { Fragment, PureComponent } from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableHighlight, AppRegistry, Button, TouchableOpacity, Image, YellowBox } from 'react-native';
-import Header from './header.js';
+import React, { Fragment } from 'react';
+import { SafeAreaView, StyleSheet, View, Text, Button, TouchableOpacity, Image, YellowBox } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Form from './form.js'
 
@@ -10,14 +9,7 @@ YellowBox.ignoreWarnings([
   'Warning: U'
 ]);
 
-class Input extends React.Component {
-  // construtor(props) {
-  //   state = {
-  //     photo: '',
-  //     view: 'camera'
-  //   }
-  //   // this.renderCameraView = this.renderCameraView.bind(this)
-  // }
+class Post extends React.Component {
 
   state = {
       photo: '',
@@ -38,11 +30,6 @@ class Input extends React.Component {
   renderCameraView = () => {
     return (
       <Fragment>
-        {/* <SafeAreaView>
-          <Header handleMenu={this.props.navigation.openDrawer} />
-          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false} >
-          </ScrollView>
-        </SafeAreaView> */}
         <View style={styles.container}>
           <RNCamera
             ref={ref => {
@@ -73,7 +60,6 @@ class Input extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        {/* <View style={styles.container2}></View> */}
       </Fragment>
     )
   }
@@ -82,9 +68,6 @@ class Input extends React.Component {
     return (
       <Fragment>
         <SafeAreaView>
-          {/* <Header handleMenu={this.props.navigation.openDrawer} />
-          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
-          </ScrollView> */}
           <View >
             <Image
               style={styles.photo}
@@ -107,11 +90,6 @@ class Input extends React.Component {
   renderFormView = () => {
     return (
       <Fragment>
-        {/* <SafeAreaView>
-          <Header handleMenu={this.props.navigation.openDrawer} />
-          <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
-          </ScrollView>
-        </SafeAreaView> */}
         <Form photo={this.state.photo} navi={this.props.navigation}/>
       </Fragment>
     )
@@ -131,7 +109,6 @@ class Input extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 2,
     flexDirection: 'column',
     backgroundColor: '#999',
     height: 380,
@@ -159,65 +136,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Input;
-
-// const Input = (props) => {
-//   return (
-//     <Fragment>
-//       <SafeAreaView>
-//         <Header handleMenu={props.navigation.openDrawer} />
-//         <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
-//         </ScrollView>
-//         <View>
-//           <Text>This is Input</Text>
-//         </View>
-//       </SafeAreaView>
-//     </Fragment>
-//   );
-// };
-
-/*
-class Input extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      photos: []
-    };
-    this.handleButtonPress = this.handleButtonPress.bind(this);
-  }
-
-  handleButtonPress = () => {
-    CameraRoll.getPhotos({
-      first: 20,
-      assetType: 'Photos',
-    })
-      .then(allPhotos => {
-        this.setState({ photos: allPhotos.edges }, () => console.log('allPhotos:', this.state.photos));
-      })
-      .catch((err) => {
-        console.log('this is err', err);
-      });
-  };
-
-  render() {
-    return (
-      <SafeAreaView>
-        <Header handleMenu={this.props.navigation.openDrawer} />
-        <View>
-          <Text>This is some shit</Text>
-        </View>
-        <View>
-          <Button onPress={this.handleButtonPress} title='photos'></Button>
-          <ScrollView>
-            {this.state.photos.map((photo, idx) => {
-              return (
-                <Image key={idx} source={{ uri: photo.node.image.uri }} />
-              )
-            })}
-          </ScrollView>
-        </View>
-      </SafeAreaView>
-    )
-  }
-}
-*/
+export default Post;

@@ -10,7 +10,7 @@ import {
 import { createDrawerNavigator, createAppContainer, NavigateActions, createStackNavigator } from 'react-navigation';
 
 import Feed from './components/feed.js'
-import Input from './components/input.js';
+import Post from './components/post.js';
 import fudMap from './components/map.js';
 import Search from './components/search.js';
 import Header from './components/header.js';
@@ -51,7 +51,7 @@ const DrawerNavigator = createDrawerNavigator(
           },
         },
         Camera: {
-          screen: Input,
+          screen: Post,
           navigationOptions: {
             header: (props) => (
 
@@ -96,7 +96,7 @@ const DrawerNavigator = createDrawerNavigator(
         </View>
         <View style={{ marginTop: 50 }}>
           <Text onPress={() => props.navigation.navigate('Camera')}>
-            input füd
+            post füd
         </Text>
         </View>
         <View style={{ marginTop: 50 }}>
