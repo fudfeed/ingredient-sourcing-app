@@ -6,7 +6,6 @@ import {
 import axios from 'axios';
 import { FlatList } from "react-native-gesture-handler";
 import Recipe from './recipe'
-import console = require("console");
 
 class Feed extends React.Component {
   constructor(props) {
