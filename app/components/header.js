@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
-
+import { NavigateActions, SwitchActions } from 'react-navigation';
 
 const Header = (props) => {
   return (
@@ -13,11 +13,18 @@ const Header = (props) => {
       <TouchableOpacity onPress={props.handleMenu}>
         <Image style={styles.menu} source={require('../icons/sidebar.png')}></Image>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+      onPress={()=> props.navi.navigate('Screen1')}
+      >
         <Image style={styles.logo} source={require('../icons/fudFeedLogo.png')}></Image>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Image style={styles.camera} source={require('../icons/camera.jpg')}></Image>
+      <TouchableOpacity 
+      onPress={()=> props.navi.navigate('Screen3')}
+      // onPress={()=> console.warn(props.navi.dispatch(SwitchActions.jumpTo({routeName: 'input füd'})))}
+      >
+        <Image style={styles.camera} source={require('../icons/camera.jpg')}
+        
+        ></Image>
       </TouchableOpacity>
     </View>
   );
@@ -26,6 +33,7 @@ const Header = (props) => {
 const styles = StyleSheet.create({
   header: {
     height: 50,
+    backgroundColor: '#FFF',
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
     padding: 10,

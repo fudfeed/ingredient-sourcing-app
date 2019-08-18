@@ -70,7 +70,7 @@ class Feed extends React.Component {
   renderHeader() {
     return (
       <SafeAreaView>
-        <Header handleMenu={this.props.navigation.openDrawer} />
+        <Header handleMenu={this.props.navigation.openDrawer} navi={this.props.navigation}/>
       </SafeAreaView>
     )
   }
