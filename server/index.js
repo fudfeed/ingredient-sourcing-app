@@ -48,10 +48,12 @@ app.post('/recipes', (req, res) => {
 
 
 //routes below are for use in Wayne's Search component for ingredient search
-app.get('/stores?', (req, res) => {
+app.get('/search/stores?', (req, res) => {
   let { ingredient } = req.query;
+  let ingredientArray = ingredient.split(',');
+  console.log('ingredient', ingredientArray)
   //ingredient is [query1, query2, query3, ...]
-  db.Store.find({ 'ingredients.name': { $all: ingredient } }).limit(5)
+  db.Store.find({ 'ingredients.name': { $all: ingredientArray } }).limit(5)
     .then((storeArray) => {
       let filteredArray = [];
       const filterIrrelevantResults = (store, items) => {
@@ -77,10 +79,11 @@ app.get('/stores?', (req, res) => {
 
 app.get('/search/recipes?', (req, res) => {
   let { ingredient } = req.query;
-  console.log('ingredient:', ingredient)
-  db.Recipe.find({ 'ingredients.name': ingredient }).limit(3)
+  let ingredientArray = ingredient.split(',');
+  console.log('recipes:', ingredientArray)
+  db.Recipe.find({ 'ingredients.name': { $all: ingredientArray } }).limit(3)
     .then((recipes) => {
-      console.log('recipe', recipes)
+      console.log('results,', recipes)
       res.status(200).send(recipes);
     })
     .catch((error) => {
