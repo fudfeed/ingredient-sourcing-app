@@ -42,8 +42,6 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     paddingTop: 10,
     paddingBottom: 10,
-    borderBottomColor: '#999',
-    borderBottomWidth: 1,
   },
   description: {
     paddingLeft: 10,
