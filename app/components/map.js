@@ -20,8 +20,8 @@ class fudMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stores: sampleData,
-      query: 'spinach',
+      stores: [],
+      query: '',
     }
   }
 
@@ -61,38 +61,37 @@ class fudMap extends React.Component {
   // }
 
   displayMarkers = () => {
-    if (this.state.stores.length > 0) {
-      // this.state.stores.map((store) => {
-      //   return (
-      //     <MapView.Marker
-      //       coordinate={{
-      //         latitude: store.latitude,
-      //         longitude: store.longitude
-      //       }}
-      //       title={store.name}
-      //       description={`score: ${store.score}`}
-      //     />
-      //   )
-      // })
-    } else {
-      return (
-        <MapView.Marker
-          coordinate={{
-            latitude: 34.0522,
-            longitude: -118.2437
-          }}
-          title='Default'
-          description='This is default marker'
-        />
-      )
-    }
+    return (
+      <MapView.Marker
+        coordinate={{
+          latitude: 34.0522,
+          longitude: -118.2437
+        }}
+        title='Default'
+        description='This is default marker'
+      />
+    )
   }
 
   displayStores = () => {
     if (this.state.stores.length > 0) {
       return <Store stores={this.state.stores} query={this.state.query} />
     } else {
-      return <View></View>
+      return <View>
+        <Text>No results matched your search</Text>
+      </View>
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { navigation } = this.props;
+    const storeSearch = navigation.getParam('storeSearch');
+    const query = navigation.getParam('queryString');
+    if (prevProps !== this.props) {
+      this.setState({
+        stores: storeSearch,
+        query: query
+      })
     }
   }
 
@@ -100,7 +99,6 @@ class fudMap extends React.Component {
     return (
       <Fragment>
         <SafeAreaView>
-          {/* <Header handleMenu={this.props.navigation.openDrawer} /> */}
           <ScrollView>
             <View style={styles.container}>
               <MapView
