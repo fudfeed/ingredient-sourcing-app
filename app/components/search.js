@@ -33,10 +33,8 @@ class Search extends React.Component {
   //sends a request to the server to query by text in the input field
   searchByStore(ingredient) {
     axios.get(`http://localhost:3000/search/stores?ingredient=${ingredient}`)
-      .then((store) => {
-        this.setState({
-          stores: store
-        });
+      .then(({ data }) => {
+        this.props.navigation.navigate('FudMap', { storeSearch: data })
       })
       .catch((error) => {
         console.log('failed to search ingredient by store', error);
