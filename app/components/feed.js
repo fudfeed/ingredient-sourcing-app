@@ -10,7 +10,7 @@ import {
 import Header from "./header.js";
 import axios from 'axios';
 import { TouchableOpacity, FlatList } from "react-native-gesture-handler";
-import FeedCard from './feedCard'
+import Recipe from './recipe'
 
 class Feed extends React.Component {
   constructor(props) {
@@ -30,10 +30,9 @@ class Feed extends React.Component {
 
   componentDidMount() {
     axios.get('https://gist.githubusercontent.com/impromptuu/1d7227ff9f073337947b83b718a75233/raw/280f127cf7c7efcbd563eb86bd0e6615fbccb9ff/recipeSampleData.txt')
-      .then((data) => {
-        var newData = data.data;
+      .then(({ data }) => {
         this.setState({
-          feedData: newData
+          feedData: data
         });
       })
       .catch((err) => {
@@ -61,7 +60,7 @@ class Feed extends React.Component {
     return (
       this.state.feedData.map((obj, i) => {
         return (
-          <FeedCard key={i} name={obj.name} imageUrl={obj.photo} styles={styles} />
+          <Recipe key={i} item={item} />
         )
       })
     )
@@ -82,14 +81,14 @@ class Feed extends React.Component {
           data={this.state.feedData}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <FeedCard name={item.name} imageUrl={item.photo} styles={styles} />
-            )}
-            
-            ListHeaderComponent={this.renderHeader}
-            stickyHeaderIndices={[0]}
-            maxToRenderPerBatch={2}
-            updateCellsBatchingPeriod={2}
-            initialNumToRender={3}
+            <Recipe item={item} />
+          )}
+
+          ListHeaderComponent={this.renderHeader}
+          stickyHeaderIndices={[0]}
+          maxToRenderPerBatch={2}
+          updateCellsBatchingPeriod={2}
+          initialNumToRender={3}
         />
       </SafeAreaView>
     );
@@ -109,12 +108,5 @@ class Feed extends React.Component {
   //   );
   // }
 }
-const styles = StyleSheet.create({
-  content: {
-    marginTop: 25,
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-})
 
 export default Feed;
