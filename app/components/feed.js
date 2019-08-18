@@ -57,6 +57,7 @@ class Feed extends React.Component {
           maxToRenderPerBatch={2}
           updateCellsBatchingPeriod={2}
           initialNumToRender={3}
+          onEndReachedThreshold={0.2}
         />
       </SafeAreaView>
     );
