@@ -11,10 +11,8 @@ import {
 } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import Header from './header.js';
 import Store from './store.js';
-import sampleData from './sampleData.js';
-// import axios from 'axios';
+// import sampleData from './sampleData.js';
 
 class fudMap extends React.Component {
   constructor(props) {
@@ -24,41 +22,6 @@ class fudMap extends React.Component {
       query: '',
     }
   }
-
-  // getInitialState() {
-  //   return {
-  //     region: {
-  //       latitude: 37.78825,
-  //       longitude: -122.4324,
-  //       latitudeDelta: 0.0922,
-  //       longitudeDelta: 0.0421
-  //     }
-  //   };
-  // }
-
-  // onRegionChange(region) {
-  //   this.setState({ region });
-  // }
-
-  // render() {
-  //   return (
-  //     <MapView
-  //       region={this.state.region}
-  //       onRegionChange={this.onRegionChange}
-  //     />
-  //   );
-  // }
-
-  // getStores = () => {
-  //   axios
-  //     .get(`http://localhost:3000/stores/?ingredient=${this.state.query}`)
-  //     .then(({ data }) => {
-  //       this.setState({
-  //         stores: data
-  //       })
-  //     })
-  //     .catch(() => console.error('Sorry, we could not get stores'));
-  // }
 
   displayMarkers = () => {
     return (
@@ -78,20 +41,24 @@ class fudMap extends React.Component {
       return <Store stores={this.state.stores} query={this.state.query} />
     } else {
       return <View>
-        <Text>No results matched your search</Text>
+        <Text>Sorry, no results matched your search</Text>
       </View>
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidMount(prevProps) {
     const { navigation } = this.props;
     const storeSearch = navigation.getParam('storeSearch');
-    const query = navigation.getParam('queryString');
-    if (prevProps !== this.props) {
-      this.setState({
-        stores: storeSearch,
-        query: query
-      })
+    const queryArray = navigation.getParam('queryArray');
+    const queryString = this.state.query;
+    if (storeSearch) {
+      queryString = queryArray.join(', ');
+      if (prevProps !== this.props) {
+        this.setState({
+          stores: storeSearch,
+          query: queryString
+        })
+      }
     }
   }
 
@@ -127,7 +94,7 @@ class fudMap extends React.Component {
               </MapView>
             </View>
             <View style={styles.resultContainer}>
-              <Text style={styles.result}>Search Results for {this.state.query}</Text>
+              {this.state.query.length > 0 && <Text style={styles.result}>Search Results for {this.state.query}</Text>}
               <View>{this.displayStores()}</View>
             </View>
           </ScrollView>
