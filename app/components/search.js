@@ -82,7 +82,7 @@ class Search extends React.Component {
     return (
       <Fragment>
         <SafeAreaView>
-          <Header handleMenu={this.props.navigation.openDrawer} />
+          {/* <Header handleMenu={this.props.navigation.openDrawer} /> */}
           <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
             {/* start of component container */}
             <View style={styles.component}>
