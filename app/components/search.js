@@ -19,13 +19,15 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchValue: '',
+      searchValue: [],
       stores: [],
-      recipes: []
+      recipes: [],
+      fieldCount: ['']
     };
-    // this.handleChange = this.handleChange.bind(this);
     this.searchByStore = this.searchByStore.bind(this);
     this.searchByRecipe = this.searchByRecipe.bind(this);
+    this.addFields = this.addFields.bind(this);
+    this.pushIntoSearchArray = this.pushIntoSearchArray.bind(this);
   }
 
   //searchByStore gets called when the Search By Stores button is pressed
@@ -56,16 +58,47 @@ class Search extends React.Component {
       })
   }
 
+  //this function adds more ingredient input fields
+  addFields() {
+    let newCount = this.state.fieldCount;
+    newCount.push('');
+    this.setState({
+      fieldCount: newCount
+    })
+  }
+
+  pushIntoSearchArray(txt) {
+    let newArray = [...this.state.searchValue];
+    newArray.push(txt);
+    console.warn('newArray', newArray);
+    this.setState({
+      searchValue: newArray
+    })
+  }
+
   render() {
     return (
       <Fragment>
         <SafeAreaView>
           <Header handleMenu={this.props.navigation.openDrawer} />
           <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
+            {/* start of component container */}
             <View style={styles.component}>
-              <View style={styles.searchBox}>
-                <TextInput placeholder='what are you feeling today?' style={styles.searchField} onChangeText={(text) => this.setState({searchValue: text})}></TextInput>
+              {/* start of search field container */}
+              {this.state.fieldCount.map((x, index) => {
+                return (
+                  <View style={styles.searchBox}>
+                    <TextInput id={index} key={index} placeholder='add an ingredient!' style={styles.searchField}></TextInput>
+                  </View>
+                )
+              })}
+              {/* end of search field container */}
+              {/* start of advanced search container */}
+              <View >
+                <Button onPress={this.addFields} title="add more ingredients"></Button>
               </View>
+              {/* end of advanced search container */}
+              {/* start of search button container */}
               <View style={styles.buttonContainer}>
                 <View>
                   <Button onPress={() => { this.searchByRecipe(this.state.searchValue) }} title="search by recipe">
@@ -76,13 +109,14 @@ class Search extends React.Component {
                   </Button>
                 </View>
               </View>
-              {/*Below for results container */}
+              {/* end of search button container */}
+              {/* start of results container */}
               <View>
                 {this.state.stores ?
                   <FlatList
                     data={this.state.stores}
                     renderItem={(store) => {
-                      {console.warn('hits here')}
+                      { console.warn('hits here') }
                       <View>
                         <Text>{store.name}</Text>
                         <Text>{store.score}</Text>
@@ -92,8 +126,9 @@ class Search extends React.Component {
                   </FlatList> : null
                 }
               </View>
-              {/*End of results container */}
+              {/*end of results container */}
             </View>
+            {/* end of component container */}
           </ScrollView>
         </SafeAreaView>
       </Fragment>
@@ -102,12 +137,12 @@ class Search extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
   searchBox: {
     alignItems: 'center',
     width: 300,
     justifyContent: 'center',
-    marginLeft: 37
+    marginLeft: 37,
+    paddingBottom: 10
   },
   searchField: {
     borderWidth: 1,
@@ -126,11 +161,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   component: {
-    justifyContent: 'flex-start',
-    marginTop: 300
+    marginTop: 150
   },
   resultsContainer: {
     alignContent: 'center',
+  },
+  advancedSearch: {
+    fontSize: 12,
+    paddingLeft: 228,
+    paddingTop: 5
   }
 });
 
