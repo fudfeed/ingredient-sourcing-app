@@ -14,13 +14,12 @@ const Header = (props) => {
         <Image style={styles.menu} source={require('../icons/sidebar.png')}></Image>
       </TouchableOpacity>
       <TouchableOpacity
-      onPress={()=> props.navi.navigate('Screen1')}
+      onPress={()=> props.navi.navigate('Feed')}
       >
         <Image style={styles.logo} source={require('../icons/fudFeedLogo.png')}></Image>
       </TouchableOpacity>
       <TouchableOpacity 
-      onPress={()=> props.navi.navigate('Screen3')}
-      // onPress={()=> console.warn(props.navi.dispatch(SwitchActions.jumpTo({routeName: 'input füd'})))}
+      onPress={()=> props.navi.navigate('Camera')}
       >
         <Image style={styles.camera} source={require('../icons/camera.jpg')}
         

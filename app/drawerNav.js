@@ -25,33 +25,21 @@ const DrawerNavigator = createDrawerNavigator(
   {
     DrawerMenu: {
       screen: createStackNavigator({
-        Screen1: {
+        Feed: {
           screen: Feed
         },
-        Screen2: {
+        Search: {
           screen: Search
         },
-        Screen3: {
+        Camera: {
           screen: Input
         },
-        Screen4: {
+        FudMap: {
           screen: fudMap
         }
       }, {}
 
       )
-    },
-    'füdfeed': {
-      screen: (props) => <Feed {...props} />
-    },
-    'search füd': {
-      screen: Search
-    },
-    'input füd': {
-      screen: Input
-    },
-    'füd map': {
-      screen: fudMap
     },
   },
 
@@ -63,24 +51,24 @@ const DrawerNavigator = createDrawerNavigator(
     overlayColor: '#888888',
     paths: 'test',
     contentComponent: (props) => (
-      <ScrollView>
-        <View style={{ marginTop: 50 }}>
-          <Text onPress={() => props.navigation.navigate('Screen1')}>
+      <ScrollView style={{marginTop: 33,marginLeft: 20}}>
+        <View style={{ marginTop: 20}}>
+          <Text onPress={() => props.navigation.navigate('Feed')}>
             füdfeed
           </Text>
         </View>
         <View style={{ marginTop: 50 }}>
-          <Text onPress={() => props.navigation.navigate('Screen2')}>
+          <Text onPress={() => props.navigation.navigate('Search')}>
             search füd
         </Text>
         </View>
         <View style={{ marginTop: 50 }}>
-          <Text onPress={() => props.navigation.navigate('Screen3')}>
+          <Text onPress={() => props.navigation.navigate('Camera')}>
             input füd
         </Text>
         </View>
         <View style={{ marginTop: 50 }}>
-          <Text onPress={() => props.navigation.navigate('Screen4')}>
+          <Text onPress={() => props.navigation.navigate('FudMap')}>
             füd map
         </Text>
         </View>
@@ -96,18 +84,3 @@ const DrawerNavigator = createDrawerNavigator(
 
 
 export default createAppContainer(DrawerNavigator);
-
-  // {
-  //   'füdfeed': {
-  //     screen: (props) => <Feed {...props } test={moreProps}/>
-  //   },
-  //   'search füd': {
-  //     screen: Search
-  //   },
-  //   'input füd': {
-  //     screen: Input
-  //   },
-  //   'füd map': {
-  //     screen: fudMap
-  //   },
-  // },  
