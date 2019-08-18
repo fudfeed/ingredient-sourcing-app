@@ -7,17 +7,6 @@
  */
 
 import React, { Fragment } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-
-
 import DrawerNavi from './drawerNav';
 
 
@@ -25,18 +14,11 @@ import DrawerNavi from './drawerNav';
 export default class MotherShip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      searchData: [],
-    }
   }
-
 
   render() {
     return (
-      <DrawerNavi screenProps={this.state}/>
+      <DrawerNavi screenProps={ { recipes: this.state.searchData, grabSearchData: this.grabSearchData }} grabSearchData={this.grabSearchData}/>
     )
   }
 }
-
-
-// export default MotherShip;

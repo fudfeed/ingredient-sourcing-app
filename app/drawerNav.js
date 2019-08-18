@@ -15,12 +15,6 @@ import fudMap from './components/map.js';
 import Search from './components/search.js';
 import Header from './components/header.js';
 
-const navigateToScreen = (route) => () => {
-  const navigateAction = NavigationActions.navigate({
-    routeName: route
-  });
-  props.navigation.dispatch(navigateAction);
-}
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -30,6 +24,7 @@ const DrawerNavigator = createDrawerNavigator(
           screen: Feed,
           navigationOptions: {
             header: (props) => (
+
                 <View style={{backgroundColor: '#FFF'}}>
                   <Header 
                   handleMenu={props.navigation.openDrawer}
@@ -41,7 +36,19 @@ const DrawerNavigator = createDrawerNavigator(
           },
         },
         Search: {
-          screen: Search
+          screen: Search,
+          navigationOptions: {
+            header: (props) => (
+
+                <View style={{backgroundColor: '#FFF'}}>
+                  <Header 
+                  handleMenu={props.navigation.openDrawer}
+                    navi={props.navigation}
+                    stickyHeaderIndices={[0]}
+                  > </Header>
+                </View>
+            )
+          },
         },
         Camera: {
           screen: Input
@@ -50,8 +57,7 @@ const DrawerNavigator = createDrawerNavigator(
           screen: fudMap
         }
       }, {
-
-
+        initialRouteName: 'Search'
         }
 
       )

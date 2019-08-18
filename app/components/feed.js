@@ -46,9 +46,10 @@ class Feed extends React.Component {
   render() {
     return (
       <SafeAreaView>
+        {/* {console.warn('stuff:', this.props.navigation.state.params.recipes ? this.props.navigation : null)} */}
         <FlatList contentContainerStyle={{
         }}
-          data={this.state.feedData}
+          data={this.props.navigation.state.params.recipes.length > 0 ? this.props.navigation.state.params.recipes : this.state.feedData}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
             <FeedCard name={item.name} imageUrl={item.photo} styles={styles} />
@@ -56,6 +57,7 @@ class Feed extends React.Component {
             maxToRenderPerBatch={2}
             updateCellsBatchingPeriod={2}
             initialNumToRender={3}
+            onEndReachedThreshold={0.1}
         />
       </SafeAreaView>
     );
