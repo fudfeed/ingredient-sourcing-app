@@ -6,18 +6,23 @@ import {
   StyleSheet
 } from 'react-native';
 
-
 const Header = (props) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity onPress={props.handleMenu}>
         <Image style={styles.menu} source={require('../icons/sidebar.png')}></Image>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+      onPress={()=> props.navi.navigate('Feed')}
+      >
         <Image style={styles.logo} source={require('../icons/fudFeedLogo.png')}></Image>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Image style={styles.camera} source={require('../icons/camera.jpg')}></Image>
+      <TouchableOpacity 
+      onPress={()=> props.navi.navigate('Camera')}
+      >
+        <Image style={styles.camera} source={require('../icons/camera.jpg')}
+        
+        ></Image>
       </TouchableOpacity>
     </View>
   );
@@ -26,9 +31,11 @@ const Header = (props) => {
 const styles = StyleSheet.create({
   header: {
     height: 50,
+    backgroundColor: '#FFF',
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
     padding: 10,
+    marginTop: 38,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between'
