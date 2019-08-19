@@ -104,60 +104,60 @@ const hashtags = [
     value: 'Vietnamese',
   },
   {
-    label: 'main course',
-    value: 'main course',
+    label: 'Main Course',
+    value: 'Main Course',
   },
   {
-    label: 'side dish',
-    value: 'side dish',
+    label: 'Side Dish',
+    value: 'Side Dish',
   },
   {
-    label: 'dessert',
-    value: 'dessert',
+    label: 'Dessert',
+    value: 'Dessert',
   },
   {
-    label: 'appetizer',
-    value: 'appetizer',
+    label: 'Appetizer',
+    value: 'Appetizer',
   },
   {
-    label: 'salad',
-    value: 'salad',
+    label: 'Salad',
+    value: 'Salad',
   },
   {
-    label: 'bread',
-    value: 'bread',
+    label: 'Bread',
+    value: 'Bread',
   },
   {
-    label: 'breakfast',
-    value: 'breakfast',
+    label: 'Breakfast',
+    value: 'Breakfast',
   },
   {
-    label: 'soup',
-    value: 'soup',
+    label: 'Soup',
+    value: 'Soup',
   },
   {
-    label: 'beverage',
-    value: 'beverage',
+    label: 'Beverage',
+    value: 'Beverage',
   },
   {
-    label: 'sauce',
-    value: 'sauce',
+    label: 'Sauce',
+    value: 'Sauce',
   },
   {
-    label: 'marinade',
-    value: 'marinade',
+    label: 'Marinade',
+    value: 'Marinade',
   },
   {
-    label: 'fingerfood',
-    value: 'fingerfood',
+    label: 'Fingerfood',
+    value: 'Fingerfood',
   },
   {
-    label: 'snack',
-    value: 'snack',
+    label: 'Snack',
+    value: 'Snack',
   },
   {
-    label: 'drink',
-    value: 'drink',
+    label: 'Drink',
+    value: 'Drink',
   }
 ];
 
