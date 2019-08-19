@@ -11,30 +11,18 @@ import {
 } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import axios from 'axios';
 import Store from './store.js';
-// import sampleData from './sampleData.js';
+import sampleData from './sampleData.js';
 
 class fudMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       stores: [],
-      query: '',
+      query: 'stores near by',
     }
-  }
-
-  displayMarkers = () => {
-    return (
-      <MapView.Marker
-        coordinate={{
-          latitude: 34.0522,
-          longitude: -118.2437
-        }}
-        title='Default'
-        description='This is default marker'
-      />
-    )
-  }
+  }r
 
   displayStores = () => {
     if (this.state.stores.length > 0) {
@@ -46,17 +34,55 @@ class fudMap extends React.Component {
     }
   }
 
+  getAllStores = () => {
+    axios
+      .get('http://localhost:3000/stores')
+      .then(({ data }) => {
+        this.setState({
+          stores: data
+        })
+      })
+      .catch(() => console.warn('unable to get stores'))
+  }
+
   componentDidMount(prevProps) {
-    const { navigation } = this.props;
-    const storeSearch = navigation.getParam('storeSearch');
-    const queryArray = navigation.getParam('queryArray');
-    const queryString = this.state.query;
+    let { navigation } = this.props;
+    let storeSearch = navigation.getParam('storeSearch');
+    let queryArray = navigation.getParam('queryArray');
     if (storeSearch) {
       queryString = queryArray.join(', ');
       if (prevProps !== this.props) {
         this.setState({
           stores: storeSearch,
           query: queryString
+        }, () => {
+          console.warn('MOUNT')
+          console.warn(this.state.stores)
+          this.props.navigation.state.params.storeSearch = null;
+          this.props.navigation.state.params.queryArray = null;
+        })
+      }
+    } else {
+      this.getAllStores();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    let { navigation } = this.props;
+    let storeSearch = navigation.getParam('storeSearch');
+    let queryArray = navigation.getParam('queryArray');
+    let queryString = this.state.query;
+    if (storeSearch) {
+      queryString = queryArray.join(', ');
+      if (prevProps !== this.props) {
+        this.setState({
+          stores: storeSearch,
+          query: queryString
+        }, () => {
+          console.warn('UPDATE')
+          console.warn(this.state.stores)
+          this.props.navigation.state.params.storeSearch = null;
+          this.props.navigation.state.params.queryArray = null;
         })
       }
     }

@@ -1092,56 +1092,13 @@ const allIngredients = [
   'vanilla extract',
 ];
 
-const hashtags = [
-  'African',
-  'American',
-  'British',
-  'Cajun',
-  'Caribbean',
-  'Chinese',
-  'Eastern European',
-  'European',
-  'French',
-  'German',
-  'Greek',
-  'Indian',
-  'Irish',
-  'Italian',
-  'Japanese',
-  'Jewish',
-  'Korean',
-  'Latin American',
-  'Mediterranean',
-  'Mexican',
-  'Middle Eastern',
-  'Nordic',
-  'Southern',
-  'Spanish',
-  'Thai',
-  'Vietnamese',
-  'main course',
-  'side dish',
-  'dessert',
-  'appetizer',
-  'salad',
-  'bread',
-  'breakfast',
-  'soup',
-  'beverage',
-  'sauce',
-  'marinade',
-  'fingerfood',
-  'snack',
-  'drink'
-]
-
 const setObj = new Set(allIngredients)
 const ingredients = [...setObj]
 
 const getRand = (min, max) => Math.random() * (max - min) + min;
 
 const storeSeedGen = () => {
-  let output = [], i, j;
+  let output = [], i, j, k;
   for (i = 0; i < 100; i++) {
     const id = i + 1;
     const name = names[i];
@@ -1149,19 +1106,32 @@ const storeSeedGen = () => {
     const longitude = getRand(-118.458218, -118.299864);
     const score = Math.floor(getRand(0, 10));
     const ingrLen = Math.floor(getRand(30, 50));
+    let ingrName;
     let arr = [];
     for (j = 0; j < ingrLen; j++) {
-      const ingrName = ingredients[Math.floor(getRand(0, 100))]
-      const price = (getRand(0.99, 50).toFixed(2))
-      arr.push({ name: ingrName.toLowerCase(), price })
+      ingrName = ingredients[Math.floor(getRand(0, 100))]
+      arr.push(ingrName);
     }
+    const subObj = new Set(arr);
+    let subArr = [...subObj];
+    let storeIngr = [];
+    let item;
+    for (k = 0; k < subArr.length; k++) {
+      item = {
+        name: subArr[k].toLowerCase(), 
+        price: getRand(0.99, 15).toFixed(2)
+      }
+      storeIngr.push(item);
+    }
+
+
     const store = {
       id,
       name,
       latitude,
       longitude,
       score,
-      ingredients: arr
+      ingredients: storeIngr
     };
     output.push(store)
   }
