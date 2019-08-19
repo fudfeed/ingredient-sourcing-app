@@ -1,7 +1,7 @@
 const { Recipe, Store } = require('./index.js');
 
 const getAllRecipes = () => {
-  return Recipe.find().sort({id: -1})
+  return Recipe.find().sort({_id: -1})
 }
 
 const getAllStores = () => {
@@ -17,13 +17,3 @@ module.exports = {
   getAllStores,
   postRecipe
 }
-
-/*
-(err) => {
-    if (err) {
-      console.log('error postRecipe dbHelper')
-    } else {
-      console.log(`${payload} added`)
-    }
-  })
-*/
