@@ -60,13 +60,15 @@ app.get('/search/stores?', (req, res) => {
           let ingredients = [];
           filteredArray.push({ id, name, latitude, longitude, score, ingredients })
           for (let j of i.ingredients) {
-            if (items.includes(j.name)) {
-              filteredArray[filteredArray.length - 1].ingredients.push(j);
+            for (let k of items) {
+              if (k === j.name) {
+                filteredArray[filteredArray.length - 1].ingredients.push(j);
+              }
             }
           }
         }
       }
-      filterIrrelevantResults(storeArray, ingredient);
+      filterIrrelevantResults(storeArray, ingredientArray);
       res.status(200).send(filteredArray);
     })
     .catch((error) => {
