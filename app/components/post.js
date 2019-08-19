@@ -70,13 +70,13 @@ class Post extends React.Component {
   renderPhotoView = () => {
     return (
       <Fragment>
-        <SafeAreaView style={{ backgroundColor: '#E6E6E6' }} >
-          <View>
+        <SafeAreaView  >
+          <View style={{backgroundColor: '#C4C4C4'}}>
             <Image
               style={styles.photo}
               source={{ uri: this.state.photo }}
             />
-            <View >
+            <View style={styles.outerContainer}>
               <View style={styles.buttonContainer} >
                 <TouchableOpacity
                   onPress={() => this.setState({ view: 'camera' })}
@@ -132,6 +132,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center'
   },
+  outerContainer: {
+    height: 500,
+    backgroundColor: '#C4C4C4',
+    marginTop: 100
+  },
   container: {
     flex: 1,
     backgroundColor: '#C4C4C4',
@@ -143,7 +148,7 @@ const styles = StyleSheet.create({
   },
   capture: {
     flex: 0,
-    backgroundColor: '#ffdb4b',
+    backgroundColor: '#ffd862',
     borderRadius: 20,
     padding: 15,
     paddingHorizontal: 20,
@@ -152,11 +157,13 @@ const styles = StyleSheet.create({
   },
   capture2: {
     flex: 0,
-    backgroundColor: '#ffdb4b',
+    backgroundColor: '#ffd862',
+    width: 200,
     borderRadius: 20,
     padding: 15,
     paddingHorizontal: 20,
     margin: 20,
+    alignItems: 'center'
   },
   photo: {
     alignSelf: 'center',

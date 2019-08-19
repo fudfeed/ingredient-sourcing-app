@@ -64,13 +64,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: 'white'
+    backgroundColor: 'cornsilk'
   },
   textStyle: {
     fontSize: 24,
     textAlign: 'center',
     margin: 10,
-    color: '#333'
+    color: 'black'
   },
 });
 
