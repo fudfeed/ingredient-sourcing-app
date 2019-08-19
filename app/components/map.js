@@ -55,11 +55,6 @@ class fudMap extends React.Component {
         this.setState({
           stores: storeSearch,
           query: queryString
-        }, () => {
-          console.warn('MOUNT')
-          console.warn(this.state.stores)
-          this.props.navigation.state.params.storeSearch = null;
-          this.props.navigation.state.params.queryArray = null;
         })
       }
     } else {
@@ -78,11 +73,6 @@ class fudMap extends React.Component {
         this.setState({
           stores: storeSearch,
           query: queryString
-        }, () => {
-          console.warn('UPDATE')
-          console.warn(this.state.stores)
-          this.props.navigation.state.params.storeSearch = null;
-          this.props.navigation.state.params.queryArray = null;
         })
       }
     }
