@@ -32,8 +32,11 @@ class Search extends React.Component {
   //searchByStore gets called when the Search By Stores button is pressed
   //sends a request to the server to query by text in the input field
   searchByStore(ingredient) {
+    let string = ingredient.toString();
+    console.warn('this is ingredient', string);
     axios.get(`http://localhost:3000/search/stores?ingredient=${ingredient}`)
       .then(({ data }) => {
+        console.warn('this is data', data);
         this.props.navigation.navigate('FudMap', { storeSearch: data, queryString: ingredient })
       })
       .catch((error) => {
@@ -45,10 +48,17 @@ class Search extends React.Component {
   //SearchByRecipe gets called when Search By Recipe button is pressed
   //sends a request to the server to query by text in the input field
   searchByRecipe(ingredient) {
+    let string = ingredient.toString();
+    console.warn('this is ingredient', string);
     axios.get(`http://localhost:3000/search/recipes?ingredient=${ingredient}`)
       .then(({data}) => {
         this.props.navigation.navigate('Feed', { recipeSearch: data })
       })
+      // .then(() => {
+      //   this.setState({
+
+      //   })
+      // })
       .catch((error) => {
         console.log('failed to search by recipe', error);
       })
@@ -109,7 +119,7 @@ class Search extends React.Component {
               </View>
               {/* end of search button container */}
               {/* start of results container */}
-              <View>
+              {/* <View>
                 {this.state.stores ?
                   <FlatList
                     data={this.state.stores}
@@ -123,7 +133,7 @@ class Search extends React.Component {
                   >
                   </FlatList> : null
                 }
-              </View>
+              </View> */}
               {/*end of results container */}
             </View>
             {/* end of component container */}

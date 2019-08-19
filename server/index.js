@@ -24,15 +24,15 @@ app.get('/recipes', (req, res) => {
     });
 });
 
-// app.get('/stores', (req, res) => {
-//   dbHelpers.getAllStores()
-//     .then((data) => {
-//       res.status(200).send(data);
-//     })
-//     .catch((err) => {
-//       res.status(404).send('error server get stores');
-//     });
-// });
+  app.get('/stores', (req, res) => {
+    dbHelpers.getAllStores()
+      .then((data) => {
+        res.status(200).send(data);
+      })
+      .catch((err) => {
+        res.status(404).send('error server get stores');
+      });
+  });
 
 //route for recipe post (jeremy)
 app.post('/recipes', (req, res) => {
@@ -50,8 +50,9 @@ app.post('/recipes', (req, res) => {
 //routes below are for use in Wayne's Search component for ingredient search
 app.get('/search/stores?', (req, res) => {
   let { ingredient } = req.query;
+  console.log('this is req query', ingredient);
   let ingredientArray = ingredient.split(',');
-  console.log('ingredient', ingredientArray)
+  // console.log('ingredient', ingredientArray)
   //ingredient is [query1, query2, query3, ...]
   db.Store.find({ 'ingredients.name': { $all: ingredientArray } }).limit(5)
     .then((storeArray) => {
@@ -69,6 +70,7 @@ app.get('/search/stores?', (req, res) => {
         }
       }
       filterIrrelevantResults(storeArray, ingredient);
+      console.log('this is filteredarray', filteredArray);
       res.status(200).send(filteredArray);
     })
     .catch((error) => {
@@ -79,9 +81,10 @@ app.get('/search/stores?', (req, res) => {
 
 app.get('/search/recipes?', (req, res) => {
   let { ingredient } = req.query;
-  let ingredientArray = ingredient.split(',');
-  console.log('recipes:', ingredientArray)
-  db.Recipe.find({ 'ingredients.name': { $all: ingredientArray } }).limit(3)
+  console.log('this is ingredient', ingredient);
+  // let ingredientArray = ingredient.split(',');
+  // console.log('recipes:', ingredientArray)
+  db.Recipe.find({ 'ingredients.name': { $all: ingredient } }).limit(3)
     .then((recipes) => {
       console.log('results,', recipes)
       res.status(200).send(recipes);
