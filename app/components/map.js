@@ -20,7 +20,7 @@ class fudMap extends React.Component {
     super(props);
     this.state = {
       stores: [],
-      query: 'stores near by',
+      query: 'stores nearby',
     }
   }r
 
@@ -29,7 +29,7 @@ class fudMap extends React.Component {
       return <Store stores={this.state.stores} query={this.state.query} />
     } else {
       return <View>
-        <Text>Sorry, no results matched your search</Text>
+        <Text style={styles.error}>Sorry, no results matched your search</Text>
       </View>
     }
   }
@@ -90,8 +90,8 @@ class fudMap extends React.Component {
                 region={{
                   latitude: 33.9984305,
                   longitude: -118.379041,
-                  latitudeDelta: 0.1922,
-                  longitudeDelta: 0.1421
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421
                 }}
               >
                 {this.state.stores.map((store, key) => {
@@ -133,11 +133,14 @@ const styles = {
   },
   resultContainer: {
     margin: 10,
-    paddingLeft: 10,
-    marginTop: 320
+    marginTop: 310
   },
   result: {
-    fontSize: 20
+    fontSize: 20,
+    padding: 10
+  },
+  error: {
+    padding: 10
   }
 };
 
