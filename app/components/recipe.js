@@ -41,7 +41,7 @@ class Recipe extends React.Component {
   displayRecipeDetail = () => {
     if (this.state.displayRecipe) {
       return (
-        <RecipeDetail item={this.props.item}/>
+        <RecipeDetail item={this.props.item} />
       );
     } else {
       return (
@@ -101,7 +101,6 @@ class Recipe extends React.Component {
           {this.state.rating === 0 && <Text style={styles.rating}>⭒⭒⭒⭒⭒</Text>}
         </View>
         <TouchableOpacity onPress={this.handleRecipeOnPress}>
-          {/* {console.warn(this.props.photo)} */}
           <Image source={{ uri: this.props.item.photo }} style={styles.image} />
         </TouchableOpacity>
         <View style={styles.userContainer}>
@@ -110,6 +109,13 @@ class Recipe extends React.Component {
         </View>
         {this.displayRecipeDetail()}
         {this.displayComments()}
+        <Text style={styles.hashContainer}>
+          {this.props.item.hashtags.map((hash, key) => {
+            return (
+              <Text style={styles.hash} key={key}>#{hash.replace(' ', '')} </Text>
+            )
+          })}
+        </Text>
       </View>
     )
   }
@@ -120,7 +126,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
-    backgroundColor: '#ffdb4b',
+    backgroundColor: '#ffd862', //'#ffbf00',
   },
   title: {
     fontSize: 16,
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
     height: 300
   },
   userContainer: {
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#bfe6ff', //gray '#E8E8E8',
     padding: 5,
     flexDirection: 'row',
   },
@@ -186,6 +192,14 @@ const styles = StyleSheet.create({
   },
   collapsableText: {
     color: '#555'
+  },
+  hash: {
+    color: '#1261A0',
+    margin: 15
+  },
+  hashContainer: {
+    padding: 15,
+    paddingTop: 0
   },
 })
 
