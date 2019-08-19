@@ -1,19 +1,18 @@
 import { Container, Content, Text } from 'native-base';
 import React from 'react';
-import { Alert, SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import Form4u from 'react-native-form4u';
 import formFields from './formConfig/formFields';
 import validationRules from './formConfig/validationRules';
-import axios from 'axios'
-import faker from 'faker'
+import axios from 'axios';
 
 const Form = (props) => {
 
   const handleSubmit = (state) => {
     const {name, ingredients, instructions, hashtags, source, photo} = state;
     const chef = {
-      name: faker.internet.userName(),
-      avatar: faker.image.avatar()
+      name: 'Wayne',
+      avatar: 'https://scontent-dfw5-1.xx.fbcdn.net/v/t31.0-8/1501298_10152927112776522_1833154138514612679_o.jpg?_nc_cat=105&_nc_oc=AQkCqTzcEn9UYTl1cnLvUffNCg964txqK5V-0sVSTZbom2KQPHBQAgDSnZeJv6J1vOY&_nc_ht=scontent-dfw5-1.xx&oh=7db92de80873dc1d290f0c578c1edd9e&oe=5DD89EC4'
     }
     let ingArr = ingredients.value.split(', ');
     for (let i = 0; i < ingArr.length; i++) {
@@ -25,7 +24,6 @@ const Form = (props) => {
     }
     const date = Date.now()
     const payload = {
-      id: 442,
       chef,
       name: name.value,
       ingredients: ingArr,
@@ -34,13 +32,11 @@ const Form = (props) => {
       hashtags: hashtags.value,
       photo: props.photo
     }
-    // console.warn(payload)
     axios.post('http://localhost:3000/recipes', { payload })
       .then((data) => {
-        // console.warn(`Posted ${JSON.stringify(payload)}`)
+        props.navi.navigate('Feed', { recipePost: payload })
       })
       .catch(err => console.warn(err))
-    props.navi.navigate('Feed', { postData: payload })
     };
 
   return (
@@ -52,6 +48,7 @@ const Form = (props) => {
             formFields={formFields}
             handleSubmit={handleSubmit}
             validation={validationRules}
+            submitOnDirty
           />
         </Content>
       </SafeAreaView>
@@ -62,19 +59,18 @@ const Form = (props) => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    // backgroundColor: '#3F4EA5'
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     padding: 10,
-    // backgroundColor: '#3F4EA5'
+    backgroundColor: 'white'
   },
   textStyle: {
-    fontSize: 15,
+    fontSize: 24,
     textAlign: 'center',
     margin: 10,
-    // color: '#FFF'
+    color: '#333'
   },
 });
 
