@@ -36,6 +36,11 @@ class Search extends React.Component {
       .then(({ data }) => {
         this.props.navigation.navigate('FudMap', { storeSearch: data, queryArray: ingredient })
       })
+      .then(() => {
+        this.setState({
+          searchValue: []
+        })
+      })
       .catch((error) => {
         console.warn('failed to search ingredient by store', error);
       })
@@ -48,6 +53,11 @@ class Search extends React.Component {
     axios.get(`http://localhost:3000/search/recipes?ingredient=${ingredient}`)
       .then(({ data }) => {
         this.props.navigation.navigate('Feed', { recipeSearch: data })
+      })
+      .then(() => {
+        this.setState({
+          searchValue: []
+        })
       })
       .catch((error) => {
         console.warn('failed to search by recipe', error);
@@ -86,7 +96,7 @@ class Search extends React.Component {
               {this.state.fieldCount.map((x, index) => {
                 return (
                   <View style={styles.searchBox} id={index} key={index}>
-                    <TextInput autoCapitalize='none' onEndEditing={(e) => this.pushIntoSearchArray(e.nativeEvent.text)} key={index} placeholder='add an ingredient!' style={styles.searchField}></TextInput>
+                    <TextInput autoCapitalize='none' clearButtonMode='always' onEndEditing={(e) => this.pushIntoSearchArray(e.nativeEvent.text)} key={index} placeholder='add an ingredient!' style={styles.searchField}></TextInput>
                   </View>
                 )
               })}
