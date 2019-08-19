@@ -12,8 +12,8 @@ YellowBox.ignoreWarnings([
 class Post extends React.Component {
 
   state = {
-      photo: '',
-      view: 'camera'
+    photo: '',
+    view: 'camera'
   }
 
   takePicture = async () => {
@@ -30,7 +30,7 @@ class Post extends React.Component {
   renderCameraView = () => {
     return (
       <Fragment>
-        <View style={styles.container}>
+        <View style={styles.cameraContainer}>
           <RNCamera
             ref={ref => {
               this.camera = ref;
@@ -54,11 +54,14 @@ class Post extends React.Component {
               console.log(barcodes);
             }}
           />
-          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }} >
+          <View style={styles.buttonContainer} >
             <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture} >
-              <Text style={{ fontSize: 14 }} > Capture </Text>
+              <Text style={{ fontSize: 16, fontWeight: '600' }} > Capture </Text>
             </TouchableOpacity>
           </View>
+        </View>
+        <View style={styles.container}>
+          <Image style={{ height: 300, width: 350, margin: 12,}} source={require('../icons/foodgallery.png')}></Image>
         </View>
       </Fragment>
     )
@@ -67,20 +70,30 @@ class Post extends React.Component {
   renderPhotoView = () => {
     return (
       <Fragment>
-        <SafeAreaView>
-          <View >
+        <SafeAreaView style={{ backgroundColor: '#E6E6E6' }} >
+          <View>
             <Image
               style={styles.photo}
-              source={{uri: this.state.photo}}
-              />
-            <Button 
-              onPress={() => this.setState({ view: 'camera' })}
-              title="Take a New Photo"
+              source={{ uri: this.state.photo }}
             />
-            <Button
-              onPress={() => this.setState({ view: 'recipe' })}
-              title="Enter Recipe"
-            />
+            <View >
+              <View style={styles.buttonContainer} >
+                <TouchableOpacity
+                  onPress={() => this.setState({ view: 'camera' })}
+                  style={styles.capture2}
+                >
+                  <Text style={{ fontSize: 16, fontWeight: '600' }} > Take a New Photo </Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.buttonContainer} >
+                <TouchableOpacity
+                  onPress={() => this.setState({ view: 'recipe' })}
+                  style={styles.capture2}
+                >
+                  <Text style={{ fontSize: 16, fontWeight: '600' }} > Enter Recipe </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </SafeAreaView>
       </Fragment>
@@ -90,29 +103,38 @@ class Post extends React.Component {
   renderFormView = () => {
     return (
       <Fragment>
-        <Form photo={this.state.photo} navi={this.props.navigation}/>
+        <Form photo={this.state.photo} navi={this.props.navigation} />
       </Fragment>
     )
   }
 
   render() {
-      return (
-        <Fragment>
-          {(this.state.view === 'camera') ? this.renderCameraView()
-            : (this.state.view === 'photo') ? this.renderPhotoView()
+    return (
+      <Fragment>
+        {(this.state.view === 'camera') ? this.renderCameraView()
+          : (this.state.view === 'photo') ? this.renderPhotoView()
             : (this.state.view === 'recipe') ? this.renderFormView()
-            : <Text>{this.state.photo}</Text>}
-        </Fragment>
-      );
-    }
+              : <Text>{this.state.photo}</Text>}
+      </Fragment>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  cameraContainer: {
     flexDirection: 'column',
-    backgroundColor: '#999',
+    backgroundColor: '#C4C4C4',
     height: 380,
     width: 400
+  },
+  buttonContainer: {
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#C4C4C4',
   },
   preview: {
     flex: 1,
@@ -121,11 +143,19 @@ const styles = StyleSheet.create({
   },
   capture: {
     flex: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffdb4b',
     borderRadius: 20,
     padding: 15,
     paddingHorizontal: 20,
-    alignSelf: 'center',
+    margin: 20,
+    marginRight: 50
+  },
+  capture2: {
+    flex: 0,
+    backgroundColor: '#ffdb4b',
+    borderRadius: 20,
+    padding: 15,
+    paddingHorizontal: 20,
     margin: 20,
   },
   photo: {

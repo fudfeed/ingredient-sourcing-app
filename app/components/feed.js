@@ -20,7 +20,7 @@ class Feed extends React.Component {
     // this.renderImages = this.renderImages.bind(this);
   }
 
-  componentDidMount() {
+  fetchRecipes = () => {
     axios.get('http://localhost:3000/recipes')
       .then(({ data }) => {
         this.setState({
@@ -28,29 +28,36 @@ class Feed extends React.Component {
         });
       })
       .catch((err) => {
-        alert('data retrieval failure', err);
+        this.fetchRecipes();
       })
   }
 
+  componentDidMount() {
+    this.fetchRecipes();
+  }
+
   componentDidUpdate(prevProps) {
-    const { navigation } = this.props;
-    const recipeSearch = navigation.getParam('recipeSearch')
-      if (prevProps !== this.props) {
+    let { navigation } = this.props;
+    let recipeSearch = navigation.getParam('recipeSearch');
+    let recipePost = navigation.getParam('recipePost');
+    if (prevProps !== this.props) {
+      if (recipeSearch) {
         this.setState({
           feedData: recipeSearch
-          })
-        }
+        }, () => this.props.navigation.state.params.recipeSearch = null)
+      } else if (recipePost) {
+        this.props.navigation.state.params.recipePost = null;
+        this.fetchRecipes();
+      }
     }
+  }
 
   render() {
-    // const { navigation } = this.props;
-    // const recipeData = navigation.getParam('recipeSearch', this.state.feedData)
+
     return (
       <SafeAreaView>
-        {/* {console.warn('stuff:', this.props.navigation.state.params.recipes ? this.props.navigation : null)} */}
-        <FlatList contentContainerStyle={{
-        }}
-          // data={this.props.navigation.state.params.recipes.length > 0 ? this.props.navigation.state.params.recipes : this.state.feedData}
+        <FlatList 
+          contentContainerStyle={{}}
           data={this.state.feedData}
           keyExtractor={item => item.name.toString()}
           renderItem={({ item }, i) => (

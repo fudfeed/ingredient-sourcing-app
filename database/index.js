@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/fudFeed', { useNewUrlParser: true })
 
 const recipeSchema = mongoose.Schema(
   {
-    id: { type: Number, required: true }, //unique: true for index
+    id: { type: Number }, //unique: true for index
     name: { type: String, required: true },
     chef: {
       name: { type: String, required: true },
