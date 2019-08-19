@@ -61,7 +61,7 @@ class Feed extends React.Component {
           data={this.state.feedData}
           keyExtractor={item => item.name.toString()}
           renderItem={({ item }, i) => (
-            <Recipe key={i} item={item} />
+            <Recipe key={i} item={item} navigation={this.props.navigation}/>
           )}
           maxToRenderPerBatch={2}
           updateCellsBatchingPeriod={2}

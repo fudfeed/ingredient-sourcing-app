@@ -12,26 +12,22 @@ class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      item: [],
       displayComments: false
     };
   }
 
   render() {
+    let { navigation } = this.props;
+    let item = navigation.getParam('item', 'hithere');
+    // console.warn('X:', navigation);
     return (
-      <View style={styles.descriptionContainer}>
-          <View style={styles.description}>
-            <Text style={styles.subTitles}>Ingredients</Text>
-            {this.props.item.ingredients.map((ingredient, key) => {
-              return (
-                <Text key={key}>{ingredient.quantity}</Text>
-              );
-            })}
-          </View>
-          <View style={styles.description}>
-            <Text style={styles.subTitles}>Instructions</Text>
-            <Text>{this.props.item.instructions}</Text>
-          </View>
-        </View>
+      <View>
+        <Text>
+          hi!
+          {JSON.stringify(item)}
+        </Text>
+      </View>
     )
   }
 };

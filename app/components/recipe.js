@@ -40,9 +40,11 @@ class Recipe extends React.Component {
 
   displayRecipeDetail = () => {
     if (this.state.displayRecipe) {
-      return (
-        <RecipeDetail item={this.props.item}/>
-      );
+      console.warn('item props to pass:',this.props.item);
+      this.props.navigation.navigate('RecipeDeets', { item: this.props.item })
+      // return (
+      //   <RecipeDetail item={this.props.item} navigation={this.props.navigation}/>
+      // );
     } else {
       return (
         <View style={styles.collapsable}>

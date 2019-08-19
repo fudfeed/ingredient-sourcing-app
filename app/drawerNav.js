@@ -15,6 +15,7 @@ import Post from './components/post.js';
 import fudMap from './components/map.js';
 import Search from './components/search.js';
 import Header from './components/header.js';
+import recipeDetail from './components/recipeDetail';
 import _sidemenuStyle from './components/sideMenuStyles.js'
 
 
@@ -81,6 +82,9 @@ const DrawerNavigator = createDrawerNavigator(
               </View>
             )
           }
+        },
+        RecipeDeets: {
+          screen: recipeDetail,
         }
       }, {
           initialRouteName: 'Feed'
