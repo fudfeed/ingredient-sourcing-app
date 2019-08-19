@@ -5,7 +5,7 @@ const _sidemenuStyle = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#E00D38', // HEADER BACKGROUND COLOR
+    backgroundColor: '#bfe6ff', // HEADER BACKGROUND COLOR
     marginTop: -1,
     paddingTop: 30,
     height: 350,
@@ -36,7 +36,7 @@ const _sidemenuStyle = StyleSheet.create({
     // borderBottomLeftRadius: 10,
     // borderBottomRightRadius: 10,
     borderRadius: 125,
-    borderColor: 'cornsilk',
+    borderColor: '#999',
     borderWidth: 3,
   },
   TextHeader: {
@@ -44,7 +44,7 @@ const _sidemenuStyle = StyleSheet.create({
     // paddingBottom: 5,
     fontSize: 23,
     fontFamily: 'AvenirNext-Regular',
-    color: 'cornsilk'
+    color: '#333'
   },
   Text: {
     flex:1,
@@ -54,15 +54,16 @@ const _sidemenuStyle = StyleSheet.create({
     fontFamily: 'AvenirNext-Regular',
   },
   Footer: {
-    marginTop: 33,
+    marginTop: 20,
   },
   HeaderText: {
-    fontSize: 10,
+    fontSize: 12,
     fontFamily: 'AvenirNext-Regular',
+    padding: 5,
     textAlign: 'center',
   },
   FooterContainer: {
-    marginTop: 25,
+    marginTop: 5,
     flexDirection: 'row',
     flex: 1,
   },

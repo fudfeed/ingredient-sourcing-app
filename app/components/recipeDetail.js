@@ -19,19 +19,19 @@ class RecipeDetail extends React.Component {
   render() {
     return (
       <View style={styles.descriptionContainer}>
-          <View style={styles.description}>
-            <Text style={styles.subTitles}>Ingredients</Text>
-            {this.props.item.ingredients.map((ingredient, key) => {
-              return (
-                <Text key={key}>{ingredient.quantity}</Text>
-              );
-            })}
-          </View>
-          <View style={styles.description}>
-            <Text style={styles.subTitles}>Instructions</Text>
-            <Text>{this.props.item.instructions}</Text>
-          </View>
+        <View style={styles.description}>
+          <Text style={styles.subTitles}>Ingredients</Text>
+          {this.props.item.ingredients.map((ingredient, key) => {
+            return (
+              <Text key={key} style={{ paddingVertical: 2 }}>{ingredient.quantity}</Text>
+            );
+          })}
         </View>
+        <View style={styles.description}>
+          <Text style={styles.subTitles}>Instructions</Text>
+          <Text>{this.props.item.instructions}</Text>
+        </View>
+      </View>
     )
   }
 };
@@ -49,7 +49,9 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   subTitles: {
-    fontWeight: "600"
+    fontWeight: "600",
+    fontSize: 18,
+    marginBottom: 5
   }
 })
 

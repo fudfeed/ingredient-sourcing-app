@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
     paddingTop: 5
   },
   subTitles: {
-    fontWeight: "600"
+    fontWeight: "600",
+    fontSize: 18,
   },
 })
 
