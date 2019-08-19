@@ -13,15 +13,24 @@ const Store = (props) => {
           return (
             <View key={key}>
               <View style={styles.storeNameContainer}>
-                <Text style={styles.storeName}>{store.name}</Text>
+                <View style={styles.storeNameAndScore}>
+                  <Text style={styles.storeName}>{store.name}</Text>
+                  {Math.floor(store.score/2) === 5 && <Text style={styles.storeName}>⭑⭑⭑⭑⭑</Text>}
+                  {Math.floor(store.score/2) === 4 && <Text style={styles.storeName}>⭑⭑⭑⭑⭒</Text>}
+                  {Math.floor(store.score/2) === 3 && <Text style={styles.storeName}>⭑⭑⭑⭒⭒</Text>}
+                  {Math.floor(store.score/2) === 2 && <Text style={styles.storeName}>⭑⭑⭒⭒⭒</Text>}
+                  {Math.floor(store.score/2) === 1 && <Text style={styles.storeName}>⭑⭒⭒⭒⭒</Text>}
+                  {Math.floor(store.score/2) === 0 && <Text style={styles.storeName}>⭒⭒⭒⭒⭒</Text>}
+                  {/* <Text style={styles.storeName}>Score: {store.score}</Text> */}
+                </View>
               </View>
               {store.ingredients.map((item, key) => {
-                  return (
-                    <View style={styles.storeItem} key={key}>
-                      <Text style={styles.item}>{item.name}</Text>
-                      <Text style={styles.price}>{`$${item.price}`}</Text>
-                    </View>
-                  )
+                return (
+                  <View style={styles.storeItem} key={key}>
+                    <Text style={styles.item}>{item.name}</Text>
+                    <Text style={styles.price}>{`$${item.price}`}</Text>
+                  </View>
+                )
               })}
             </View>
           )
@@ -36,7 +45,6 @@ const styles = {
     margin: 5,
     borderBottomWidth: 2,
     borderBottomColor: '#bfe6ff'
-    // backgroundColor: '#ffd862'
   },
   storeName: {
     margin: 5,
@@ -44,7 +52,6 @@ const styles = {
     marginBottom: 0,
     fontSize: 16,
     fontWeight: "600",
-    // backgroundColor: '#ffd862'
   },
   storeItem: {
     fontSize: 10,
@@ -60,6 +67,10 @@ const styles = {
   price: {
     flex: 1,
     textAlign: 'right'
+  },
+  storeNameAndScore: {
+    justifyContent: 'space-between',
+    flexDirection: 'row'
   }
 };
 

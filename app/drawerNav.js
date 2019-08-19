@@ -100,20 +100,14 @@ const DrawerNavigator = createDrawerNavigator(
       <ScrollView style={{ marginTop: 0 }}>
         <View style={_sidemenuStyle.avaImgContainer}>
           <Image source={{ uri: 'https://scontent-dfw5-1.xx.fbcdn.net/v/t31.0-8/1501298_10152927112776522_1833154138514612679_o.jpg?_nc_cat=105&_nc_oc=AQkCqTzcEn9UYTl1cnLvUffNCg964txqK5V-0sVSTZbom2KQPHBQAgDSnZeJv6J1vOY&_nc_ht=scontent-dfw5-1.xx&oh=7db92de80873dc1d290f0c578c1edd9e&oe=5DD89EC4' }} style={_sidemenuStyle.Image} />
-          <Text style={_sidemenuStyle.TextHeader} >
-            Hi Wayne!
-          </Text>
-        </View>
-        <View style={_sidemenuStyle.TeamSpeak} >
-          <Text style={_sidemenuStyle.HeaderText}>
-            Created By:
-          </Text>
-          <Text style={_sidemenuStyle.HeaderText}>
-            Wayne Hwang, Kristina Taing, Jeremy Bishow, Chris Pham
-          </Text>
-          <Text style={_sidemenuStyle.HeaderText}>
-            in honor of Hack Reactor!
-          </Text>
+          <View >
+            <Text style={_sidemenuStyle.TextHeader}>
+              Welcome,
+            </Text>
+            <Text style={_sidemenuStyle.TextHeader}>
+              Chef Wayne!
+            </Text>
+          </View>
         </View>
         <TouchableOpacity style={_sidemenuStyle.menuItem}
           onPress={() => props.navigation.navigate('Feed')}>
@@ -167,10 +161,23 @@ const DrawerNavigator = createDrawerNavigator(
             </View>
           </View>
         </TouchableOpacity>
+        <View style={_sidemenuStyle.TeamSpeak} >
+          <Text style={_sidemenuStyle.HeaderText}>
+            Created By:
+          </Text>
+          <View>
+            <Text style={_sidemenuStyle.HeaderText}>
+              Wayne Hwang, Kristina Taing,
+            </Text>
+            <Text style={_sidemenuStyle.HeaderText}>
+              Jeremy Bishow, Chris Pham
+            </Text>
+          </View>
+        </View>
         <View style={_sidemenuStyle.Footer} >
           <View style={_sidemenuStyle.FooterContainer}>
             <View style={_sidemenuStyle.FooterItem}>
-                <Text style={_sidemenuStyle.FooterText}>
+              <Text style={_sidemenuStyle.FooterText}>
                 füdfeed app v1.0.1
                 </Text>
             </View>
