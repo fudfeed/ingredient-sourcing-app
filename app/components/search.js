@@ -36,11 +36,15 @@ class Search extends React.Component {
     console.warn('this is ingredient', string);
     axios.get(`http://localhost:3000/search/stores?ingredient=${ingredient}`)
       .then(({ data }) => {
-        console.warn('this is data', data);
-        this.props.navigation.navigate('FudMap', { storeSearch: data, queryString: ingredient })
+        this.props.navigation.navigate('FudMap', { storeSearch: data, queryArray: ingredient })
+      })
+      .then(() => {
+        this.setState({
+          searchValue: []
+        });
       })
       .catch((error) => {
-        console.log('failed to search ingredient by store', error);
+        console.warn('failed to search ingredient by store', error);
       })
   }
 
@@ -51,16 +55,16 @@ class Search extends React.Component {
     let string = ingredient.toString();
     console.warn('this is ingredient', string);
     axios.get(`http://localhost:3000/search/recipes?ingredient=${ingredient}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         this.props.navigation.navigate('Feed', { recipeSearch: data })
       })
-      // .then(() => {
-      //   this.setState({
-
-      //   })
-      // })
+      .then(() => {
+        this.setState({
+          searchValue: []
+        });
+      })
       .catch((error) => {
-        console.log('failed to search by recipe', error);
+        console.warn('failed to search by recipe', error);
       })
   }
 
@@ -83,7 +87,6 @@ class Search extends React.Component {
     })
   }
 
-
   render() {
     return (
       <Fragment>
@@ -95,8 +98,10 @@ class Search extends React.Component {
               {/* start of search field container */}
               {this.state.fieldCount.map((x, index) => {
                 return (
-                  <View style={styles.searchBox} id={index}>
-                    <TextInput autoCapitalize='none' onEndEditing={(e) => this.pushIntoSearchArray(e.nativeEvent.text)} key={index} placeholder='add an ingredient!' style={styles.searchField}></TextInput>  
+                  <View style={styles.searchBox} id={index} key={index}>
+                    <TextInput ref={input => { this.textInput = input }} autoCapitalize='none' clearButtonMode='always' onEndEditing={(e) => { 
+                      this.pushIntoSearchArray(e.nativeEvent.text);
+                    }} key={index} placeholder='add an ingredient!' style={styles.searchField}></TextInput>
                   </View>
                 )
               })}
@@ -113,28 +118,11 @@ class Search extends React.Component {
                   </Button>
                 </View>
                 <View>
-                  <Button onPress={() => this.searchByStore(this.state.searchValue)} title="search by store">
+                  <Button onPress={() => { this.searchByStore(this.state.searchValue) }} title="search by store">
                   </Button>
                 </View>
               </View>
               {/* end of search button container */}
-              {/* start of results container */}
-              {/* <View>
-                {this.state.stores ?
-                  <FlatList
-                    data={this.state.stores}
-                    renderItem={(store) => {
-                      { console.warn('hits here') }
-                      <View>
-                        <Text>{store.name}</Text>
-                        <Text>{store.score}</Text>
-                      </View>
-                    }}
-                  >
-                  </FlatList> : null
-                }
-              </View> */}
-              {/*end of results container */}
             </View>
             {/* end of component container */}
           </ScrollView>
