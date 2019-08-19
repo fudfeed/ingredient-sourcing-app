@@ -79,7 +79,7 @@ app.get('/search/recipes?', (req, res) => {
   let { ingredient } = req.query;
   let ingredientArray = ingredient.split(',');
   console.log('recipes:', ingredientArray)
-  db.Recipe.find({ 'ingredients.name': { $all: ingredientArray } }).limit(3)
+  db.Recipe.find({ 'ingredients.name': { $all: ingredientArray } })
     .then((recipes) => {
       res.status(200).send(recipes);
     })
