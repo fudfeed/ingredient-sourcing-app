@@ -12,7 +12,7 @@ const _sidemenuStyle = StyleSheet.create({
     flex: 1,
     borderColor: 'silver',
     // borderWidth: 1,
-    marginBottom: 0,
+    marginBottom: 30,
   },
   menuItem: {
     borderTopColor: '#777',
@@ -38,10 +38,10 @@ const _sidemenuStyle = StyleSheet.create({
     borderRadius: 125,
     borderColor: '#999',
     borderWidth: 3,
+    marginBottom: 5
   },
   TextHeader: {
-    marginTop: 15,
-    // paddingBottom: 5,
+    alignSelf: 'center',
     fontSize: 23,
     fontFamily: 'AvenirNext-Regular',
     color: '#333'
@@ -59,7 +59,7 @@ const _sidemenuStyle = StyleSheet.create({
   HeaderText: {
     fontSize: 12,
     fontFamily: 'AvenirNext-Regular',
-    padding: 5,
+    padding: 2,
     textAlign: 'center',
   },
   FooterContainer: {
@@ -80,8 +80,8 @@ const _sidemenuStyle = StyleSheet.create({
     textAlign: 'center',
   },
   TeamSpeak: {
-    marginTop: 10,
-    marginBottom: 40,
+    marginTop: 20,
+    marginBottom: 20,
   },
   BarIconWrapper: {
     flex: 1,
