@@ -17,13 +17,3 @@ module.exports = {
   getAllStores,
   postRecipe
 }
-
-/*
-(err) => {
-    if (err) {
-      console.log('error postRecipe dbHelper')
-    } else {
-      console.log(`${payload} added`)
-    }
-  })
-*/
