@@ -1104,7 +1104,7 @@ const storeSeedGen = () => {
     const name = names[i];
     const latitude = getRand(34.035497, 33.961364);
     const longitude = getRand(-118.458218, -118.299864);
-    const score = Math.floor(getRand(0, 10));
+    const score = Math.floor(getRand(4, 10));
     const ingrLen = Math.floor(getRand(30, 50));
     let ingrName;
     let arr = [];
