@@ -17,33 +17,6 @@ Once the project moves into development, the press release can be used as a touc
  -->
  [![](https://img.youtube.com/vi/iIhUGPxRvVQ/0.jpg)](https://www.youtube.com/watch?v=iIhUGPxRvVQ&feature=youtu.be)
 
-
-## The Ingredient Sourcing App ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-  <!-- > asdf -->
-
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  <!-- > This app is for those who  -->
-
 ## Summary ##
   <!-- > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good. -->
   > A social application intended to inspire our users, "chefs", with a feed of recipes. Each recipe is posted by a fellow chef. If a chef taps on a recipe, they will be directed to a map of local vendors who sell the listed ingredients. In addition to searching for local vendors, chefs can also search for recipes by cuisine type, ingredients needed, or another chef.
-
-## Problem ##
-  > Describe the problem your product solves.
-
-## Solution ##
-  > Describe how your product elegantly solves the problem.
-
-## Quote from You ##
-  > A quote from a spokesperson in your company.
-
-## How to Get Started ##
-  > Describe how easy it is to get started.
-
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
